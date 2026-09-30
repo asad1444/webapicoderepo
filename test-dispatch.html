@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispatch Controller - Test Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .endpoint-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+
+        .endpoint-info code {
+            background: #2d3748;
+            color: #68d391;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .response {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            display: none;
+        }
+
+        .response.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .response.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .response.error {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #68d391;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 15px;
+            font-size: 13px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .badge-open {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .badge-dispatched {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge-pending {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Dispatch Controller - Test Page</h1>
+
+        <!-- Configuration -->
+        <div class="section">
+            <h2>⚙️ Configuration</h2>
+            <div class="form-group">
+                <label>API Base URL:</label>
+                <input type="text" id="apiBase" value="https://localhost:7296/api" placeholder="https://localhost:7296/api">
+            </div>
+        </div>
+
+        <!-- 1. Get All Tickets -->
+        <div class="section">
+            <h2>1️⃣ Get All Tickets (Jobs)</h2>
+            <div class="endpoint-info">
+                <strong>Endpoint:</strong> <code>GET /api/Dispatch/tickets</code>
+                <p style="margin-top: 10px; color: #666;">Admin dashboard mein saari jobs dikhane ke liye</p>
+            </div>
+            <button onclick="getAllTickets()">🔄 Get All Tickets</button>
+            <div class="response" id="ticketsResponse"></div>
+        </div>
+
+        <!-- 2. Create New Ticket -->
+        <div class="section">
+            <h2>2️⃣ Create New Ticket (Job)</h2>
+            <div class="endpoint-info">
+                <strong>Endpoint:</strong> <code>POST /api/Dispatch/tickets</code>
+                <p style="margin-top: 10px; color: #666;">Admin new job request create kare</p>
+            </div>
+            <div class="grid">
+                <div class="form-group">
+                    <label>Client ID:</label>
+                    <input type="number" id="createClientId" value="1" placeholder="1, 2, 3...">
+                </div>
+                <div class="form-group">
+                    <label>Category:</label>
+                    <input type="text" id="createCategory" value="AC Repair" placeholder="AC Repair, Refrigerator...">
+                </div>
+                <div class="form-group">
+                    <label>Client Request (Asset Name):</label>
+                    <input type="text" id="createRequest" value="Split AC 1.5 Ton" placeholder="Split AC 1.5 Ton">
+                </div>
+                <div class="form-group">
+                    <label>CRID:</label>
+                    <input type="text" id="createCRID" value="CR-123456" placeholder="CR-123456">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Issue Description:</label>
+                <textarea id="createIssue" rows="3" placeholder="Not cooling properly, leaking water, etc...">Not cooling properly</textarea>
+            </div>
+            <button onclick="createTicket()">➕ Create New Ticket</button>
+            <div class="response" id="createResponse"></div>
+        </div>
+
+        <!-- 3. Get Matching Companies -->
+        <div class="section">
+            <h2>3️⃣ Get Matching Companies for Job</h2>
+            <div class="endpoint-info">
+                <strong>Endpoint:</strong> <code>GET /api/Dispatch/{jobId}/matching-companies</code>
+                <p style="margin-top: 10px; color: #666;">Specific job ke liye zone match companies dikhana</p>
+            </div>
+            <div class="form-group">
+                <label>Job ID:</label>
+                <input type="number" id="matchJobId" value="1" placeholder="Enter Job ID">
+            </div>
+            <button onclick="getMatchingCompanies()">🔍 Get Matching Companies</button>
+            <div class="response" id="matchingResponse"></div>
+        </div>
+
+        <!-- 4. Submit Bid -->
+        <div class="section">
+            <h2>4️⃣ Submit Bid</h2>
+            <div class="endpoint-info">
+                <strong>Endpoint:</strong> <code>POST /api/Dispatch/bids</code>
+                <p style="margin-top: 10px; color: #666;">Company job pe bid submit kare</p>
+            </div>
+            <div class="grid">
+                <div class="form-group">
+                    <label>Job ID:</label>
+                    <input type="number" id="bidJobId" value="1" placeholder="Enter Job ID">
+                </div>
+                <div class="form-group">
+                    <label>Company ID:</label>
+                    <input type="number" id="bidCompanyId" value="1" placeholder="Enter Company ID">
+                </div>
+                <div class="form-group">
+                    <label>Estimated Arrival (minutes):</label>
+                    <input type="number" id="bidETA" value="30" placeholder="30, 45, 60...">
+                </div>
+            </div>
+            <button onclick="submitBid()">💰 Submit Bid</button>
+            <div class="response" id="bidResponse"></div>
+        </div>
+
+        <!-- 5. Award Job -->
+        <div class="section">
+            <h2>5️⃣ Award Job to Company</h2>
+            <div class="endpoint-info">
+                <strong>Endpoint:</strong> <code>POST /api/Dispatch/{jobId}/award</code>
+                <p style="margin-top: 10px; color: #666;">Admin manually job award kare specific company ko</p>
+            </div>
+            <div class="grid">
+                <div class="form-group">
+                    <label>Job ID:</label>
+                    <input type="number" id="awardJobId" value="1" placeholder="Enter Job ID">
+                </div>
+                <div class="form-group">
+                    <label>Winner Company ID:</label>
+                    <input type="number" id="awardCompanyId" value="1" placeholder="Enter Company ID">
+                </div>
+            </div>
+            <button onclick="awardJob()">🏆 Award Job</button>
+            <div class="response" id="awardResponse"></div>
+        </div>
+    </div>
+
+    <script>
+        function getApiBase() {
+            return document.getElementById('apiBase').value;
+        }
+
+        function showResponse(elementId, data, isSuccess = true) {
+            const element = document.getElementById(elementId);
+            element.className = `response show ${isSuccess ? 'success' : 'error'}`;
+            
+            // If data is array of tickets, render as table
+            if (elementId === 'ticketsResponse' && Array.isArray(data) && data.length > 0) {
+                const tableHtml = `
+                    <h3>📊 Total Tickets: ${data.length}</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Job ID</th>
+                                <th>Time</th>
+                                <th>Client Request</th>
+                                <th>Kind Of (Issue)</th>
+                                <th>CRN</th>
+                                <th>CRID</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${data.map(ticket => `
+                                <tr>
+                                    <td><strong>${ticket.jobID}</strong></td>
+                                    <td>${new Date(ticket.time).toLocaleString()}</td>
+                                    <td>${ticket.clientRequest || 'N/A'}</td>
+                                    <td>${ticket.kindOf || 'N/A'}</td>
+                                    <td>${ticket.crn || 'N/A'}</td>
+                                    <td>${ticket.crid || 'N/A'}</td>
+                                    <td>${ticket.category || 'N/A'}</td>
+                                    <td><span class="badge badge-${ticket.status.toLowerCase()}">${ticket.status}</span></td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                    <h4 style="margin-top: 20px;">Raw JSON:</h4>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+                element.innerHTML = tableHtml;
+            } 
+            // If matching companies, render as table
+            else if (elementId === 'matchingResponse' && data.availableCompanies) {
+                const tableHtml = `
+                    <h3>🗺️ Job Zone: ${data.jobZone}</h3>
+                    <h4>Available Companies: ${data.availableCompanies.length}</h4>
+                    ${data.availableCompanies.length > 0 ? `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Company ID</th>
+                                    <th>Company Name</th>
+                                    <th>Service Type</th>
+                                    <th>Incharge Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${data.availableCompanies.map(company => `
+                                    <tr>
+                                        <td><strong>${company.companyID}</strong></td>
+                                        <td>${company.companyName}</td>
+                                        <td>${company.serviceType}</td>
+                                        <td>${company.inchargePhone}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    ` : '<p style="padding: 20px; background: #fff3cd; border-radius: 8px;">⚠️ No matching companies found in this zone</p>'}
+                    <h4 style="margin-top: 20px;">Raw JSON:</h4>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+                element.innerHTML = tableHtml;
+            }
+            else {
+                element.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            }
+        }
+
+        // 1. Get All Tickets
+        async function getAllTickets() {
+            const apiBase = getApiBase();
+            try {
+                const response = await fetch(`${apiBase}/Dispatch/tickets`);
+                const data = await response.json();
+                showResponse('ticketsResponse', data, response.ok);
+            } catch (error) {
+                showResponse('ticketsResponse', { error: error.message }, false);
+            }
+        }
+
+        // 2. Create New Ticket
+        async function createTicket() {
+            const apiBase = getApiBase();
+            const data = {
+                clientID: parseInt(document.getElementById('createClientId').value),
+                category: document.getElementById('createCategory').value,
+                clientRequest: document.getElementById('createRequest').value,
+                issueDescription: document.getElementById('createIssue').value,
+                crid: document.getElementById('createCRID').value
+            };
+
+            try {
+                const response = await fetch(`${apiBase}/Dispatch/tickets`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                showResponse('createResponse', result, response.ok);
+                
+                if (response.ok) {
+                    // Refresh tickets list after 1 second
+                    setTimeout(() => getAllTickets(), 1000);
+                }
+            } catch (error) {
+                showResponse('createResponse', { error: error.message }, false);
+            }
+        }
+
+        // 3. Get Matching Companies
+        async function getMatchingCompanies() {
+            const apiBase = getApiBase();
+            const jobId = document.getElementById('matchJobId').value;
+
+            try {
+                const response = await fetch(`${apiBase}/Dispatch/${jobId}/matching-companies`);
+                const data = await response.json();
+                showResponse('matchingResponse', data, response.ok);
+            } catch (error) {
+                showResponse('matchingResponse', { error: error.message }, false);
+            }
+        }
+
+        // 4. Submit Bid
+        async function submitBid() {
+            const apiBase = getApiBase();
+            const data = {
+                jobID: parseInt(document.getElementById('bidJobId').value),
+                companyID: parseInt(document.getElementById('bidCompanyId').value),
+                estimatedArrival: parseInt(document.getElementById('bidETA').value)
+            };
+
+            try {
+                const response = await fetch(`${apiBase}/Dispatch/bids`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                showResponse('bidResponse', result, response.ok);
+            } catch (error) {
+                showResponse('bidResponse', { error: error.message }, false);
+            }
+        }
+
+        // 5. Award Job
+        async function awardJob() {
+            const apiBase = getApiBase();
+            const jobId = document.getElementById('awardJobId').value;
+            const companyId = parseInt(document.getElementById('awardCompanyId').value);
+
+            try {
+                const response = await fetch(`${apiBase}/Dispatch/${jobId}/award`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(companyId)
+                });
+                
+                const result = await response.json();
+                showResponse('awardResponse', result, response.ok);
+                
+                if (response.ok) {
+                    // Refresh tickets list after 1 second
+                    setTimeout(() => getAllTickets(), 1000);
+                }
+            } catch (error) {
+                showResponse('awardResponse', { error: error.message }, false);
+            }
+        }
+
+        // Auto-load tickets on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            getAllTickets();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartProMan API Tester</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .endpoint { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        pre { background: #f4f4f4; padding: 10px; overflow: auto; }
+    </style>
+</head>
+<body>
+    <h1>SmartProMan API Tester</h1>
+    <p>CORS is enabled - you can test your API endpoints here</p>
+    
+    <div class="endpoint">
+        <h3>Test Authentication</h3>
+        <button onclick="testAuth()">POST /api/auth/login</button>
+        <pre id="auth-result"></pre>
+    </div>
+
+    <div class="endpoint">
+        <h3>Test Dashboard</h3>
+        <button onclick="testDashboard()">GET /api/Dashboard/kpi</button>
+        <pre id="dashboard-result"></pre>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000';  // Change port if needed
+
+        async function testAuth() {
+            const result = document.getElementById('auth-result');
+            result.textContent = 'Loading...';
+            
+            try {
+                const response = await fetch(`${API_URL}/api/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: 'admin@example.com',
+                        password: 'password123'
+                    })
+                });
+                
+                const data = await response.json();
+                result.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = 'Error: ' + error.message;
+            }
+        }
+
+        async function testDashboard() {
+            const result = document.getElementById('dashboard-result');
+            result.textContent = 'Loading...';
+            
+            try {
+                const response = await fetch(`${API_URL}/api/Dashboard/kpi`);
+                const data = await response.json();
+                result.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

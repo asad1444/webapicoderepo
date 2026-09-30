@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Operating Room - Advanced Debugger</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #1e3c72;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #1e3c72;
+            box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.4);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 3px;
+        }
+
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .response {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            border-left: 5px solid #1e3c72;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #68d391;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 15px;
+            font-size: 13px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #1e3c72;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .issue-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .issue-box h3 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+
+        .issue-box ul {
+            margin-left: 20px;
+        }
+
+        .issue-box li {
+            color: #856404;
+            margin: 8px 0;
+        }
+
+        .solution-box {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .solution-box h3 {
+            color: #155724;
+            margin-bottom: 15px;
+        }
+
+        .solution-box ul {
+            margin-left: 20px;
+        }
+
+        .solution-box li {
+            color: #155724;
+            margin: 8px 0;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1e3c72;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 Live Operating Room - Advanced Debugger</h1>
+
+        <!-- Configuration -->
+        <div class="section">
+            <h2>⚙️ Configuration</h2>
+            <div class="grid">
+                <div class="form-group">
+                    <label>API Base URL:</label>
+                    <input type="text" id="apiBase" value="https://localhost:7296/api">
+                </div>
+                <div class="form-group">
+                    <label>Company ID:</label>
+                    <input type="number" id="companyId" value="1">
+                </div>
+            </div>
+        </div>
+
+        <!-- Master Diagnostic -->
+        <div class="section">
+            <h2>🔍 Master Diagnostic - Full Analysis</h2>
+            <button onclick="runFullDiagnostic()">🚀 Run Complete Diagnostic</button>
+            <div id="diagnosticResults"></div>
+        </div>
+
+        <!-- Quick Fixes -->
+        <div class="section">
+            <h2>⚡ Quick Fixes</h2>
+            <div class="grid">
+                <button onclick="createSampleData()">➕ Create Sample Data (Company + Client + Job)</button>
+                <button onclick="testLiveOperatingRoom()">🧪 Test Live Operating Room API</button>
+                <button onclick="checkZoneMatching()">🗺️ Check Zone Matching Logic</button>
+            </div>
+            <div id="quickFixResults"></div>
+        </div>
+    </div>
+
+    <script>
+        function getApiBase() {
+            return document.getElementById('apiBase').value;
+        }
+
+        function getCompanyId() {
+            return document.getElementById('companyId').value;
+        }
+
+        async function runFullDiagnostic() {
+            const resultsDiv = document.getElementById('diagnosticResults');
+            resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Running diagnostic...</p></div>';
+
+            const apiBase = getApiBase();
+            const companyId = getCompanyId();
+
+            let report = {
+                timestamp: new Date().toLocaleString(),
+                tests: [],
+                issues: [],
+                solutions: []
+            };
+
+            // Test 1: Check Company Exists
+            try {
+                const companyRes = await fetch(`${apiBase}/Companies/${companyId}`);
+                if (companyRes.ok) {
+                    const company = await companyRes.json();
+                    report.tests.push({
+                        name: '✅ Company Found',
+                        status: 'success',
+                        data: company
+                    });
+                } else {
+                    report.tests.push({
+                        name: '❌ Company Not Found',
+                        status: 'danger',
+                        data: { error: 'Company ID does not exist' }
+                    });
+                    report.issues.push(`Company ID ${companyId} does not exist in database`);
+                    report.solutions.push('Create a company first or use a valid Company ID');
+                }
+            } catch (error) {
+                report.tests.push({
+                    name: '❌ Company Check Failed',
+                    status: 'danger',
+                    data: { error: error.message }
+                });
+            }
+
+            // Test 2: Check All Companies
+            try {
+                const companiesRes = await fetch(`${apiBase}/Companies`);
+                const companies = await companiesRes.json();
+                report.tests.push({
+                    name: `📊 Total Companies: ${Array.isArray(companies) ? companies.length : 0}`,
+                    status: companies.length > 0 ? 'success' : 'warning',
+                    data: companies
+                });
+
+                if (companies.length === 0) {
+                    report.issues.push('No companies exist in database');
+                    report.solutions.push('Use the "Create Sample Data" button to create test company');
+                }
+            } catch (error) {
+                report.tests.push({
+                    name: '❌ Companies Check Failed',
+                    status: 'danger',
+                    data: { error: error.message }
+                });
+            }
+
+            // Test 3: Check All Clients
+            try {
+                const clientsRes = await fetch(`${apiBase}/Clients`);
+                const clients = await clientsRes.json();
+                report.tests.push({
+                    name: `📊 Total Clients: ${Array.isArray(clients) ? clients.length : 0}`,
+                    status: clients.length > 0 ? 'success' : 'warning',
+                    data: clients
+                });
+
+                if (clients.length === 0) {
+                    report.issues.push('No clients exist in database');
+                    report.solutions.push('Jobs require clients. Use "Create Sample Data" to create test client');
+                }
+            } catch (error) {
+                report.tests.push({
+                    name: '❌ Clients Check Failed',
+                    status: 'danger',
+                    data: { error: error.message }
+                });
+            }
+
+            // Test 4: Check All Jobs
+            try {
+                const jobsRes = await fetch(`${apiBase}/Dispatch/tickets`);
+                const jobs = await jobsRes.json();
+                
+                const openJobs = Array.isArray(jobs) ? jobs.filter(j => 
+                    j.status === 'Open' || j.statusFlag === 'Open'
+                ) : [];
+
+                report.tests.push({
+                    name: `📊 Total Jobs: ${Array.isArray(jobs) ? jobs.length : 0} (Open: ${openJobs.length})`,
+                    status: openJobs.length > 0 ? 'success' : 'warning',
+                    data: { allJobs: jobs, openJobs: openJobs }
+                });
+
+                if (openJobs.length === 0) {
+                    report.issues.push('No jobs with Status="Open" found');
+                    report.solutions.push('Create a new job using "Create Sample Data" button');
+                }
+            } catch (error) {
+                report.tests.push({
+                    name: '❌ Jobs Check Failed',
+                    status: 'danger',
+                    data: { error: error.message }
+                });
+            }
+
+            // Test 5: Call Live Operating Room API
+            try {
+                const liveRes = await fetch(`${apiBase}/Company/${companyId}/LiveOperatingRoom/requests`);
+                if (liveRes.ok) {
+                    const liveData = await liveRes.json();
+                    report.tests.push({
+                        name: `🚨 Live Operating Room: ${liveData.totalVisible || 0} visible jobs`,
+                        status: liveData.totalVisible > 0 ? 'success' : 'warning',
+                        data: liveData
+                    });
+
+                    if (liveData.totalVisible === 0) {
+                        report.issues.push('Live Operating Room returns 0 visible jobs');
+                        report.solutions.push('This could be due to zone mismatch or no open jobs');
+                    }
+                } else {
+                    const error = await liveRes.json();
+                    report.tests.push({
+                        name: '❌ Live Operating Room API Failed',
+                        status: 'danger',
+                        data: error
+                    });
+                }
+            } catch (error) {
+                report.tests.push({
+                    name: '❌ Live Operating Room API Error',
+                    status: 'danger',
+                    data: { error: error.message }
+                });
+            }
+
+            // Render Report
+            renderDiagnosticReport(report);
+        }
+
+        function renderDiagnosticReport(report) {
+            const resultsDiv = document.getElementById('diagnosticResults');
+
+            // Stats Cards
+            const statsHtml = `
+                <div class="grid" style="margin: 20px 0;">
+                    <div class="stat-card">
+                        <h3>${report.tests.filter(t => t.status === 'success').length}</h3>
+                        <p>✅ Passed Tests</p>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <h3>${report.tests.filter(t => t.status === 'danger').length}</h3>
+                        <p>❌ Failed Tests</p>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <h3>${report.tests.filter(t => t.status === 'warning').length}</h3>
+                        <p>⚠️ Warnings</p>
+                    </div>
+                </div>
+            `;
+
+            // Test Results Table
+            const testsHtml = `
+                <h3>📋 Test Results:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Test</th>
+                            <th>Status</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${report.tests.map(test => `
+                            <tr>
+                                <td>${test.name}</td>
+                                <td><span class="status-badge status-${test.status}">${test.status.toUpperCase()}</span></td>
+                                <td><pre style="max-height: 100px; font-size: 11px;">${JSON.stringify(test.data, null, 2)}</pre></td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            // Issues
+            const issuesHtml = report.issues.length > 0 ? `
+                <div class="issue-box">
+                    <h3>⚠️ Issues Found:</h3>
+                    <ul>
+                        ${report.issues.map(issue => `<li>${issue}</li>`).join('')}
+                    </ul>
+                </div>
+            ` : '';
+
+            // Solutions
+            const solutionsHtml = report.solutions.length > 0 ? `
+                <div class="solution-box">
+                    <h3>💡 Recommended Solutions:</h3>
+                    <ul>
+                        ${report.solutions.map(solution => `<li>${solution}</li>`).join('')}
+                    </ul>
+                </div>
+            ` : '';
+
+            resultsDiv.innerHTML = `
+                ${statsHtml}
+                ${issuesHtml}
+                ${solutionsHtml}
+                ${testsHtml}
+            `;
+        }
+
+        async function createSampleData() {
+            const resultsDiv = document.getElementById('quickFixResults');
+            resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Creating sample data...</p></div>';
+
+            const apiBase = getApiBase();
+            let results = [];
+
+            // Create Company
+            try {
+                const companyData = {
+                    companyName: "Test Company Ltd",
+                    companyLogo: "logo.png",
+                    inchargeName: "John Doe",
+                    inchargePhone: "03001234567",
+                    city: "Karachi",
+                    zone: "Zone-A",
+                    serviceType: "AC Services",
+                    status: "Active",
+                    email: `testcompany${Date.now()}@example.com`,
+                    passwordHash: "$2a$11$abcdefghijklmnopqrstuv" // dummy hash
+                };
+
+                const companyRes = await fetch(`${apiBase}/Companies`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(companyData)
+                });
+
+                if (companyRes.ok) {
+                    const company = await companyRes.json();
+                    results.push({ step: 'Create Company', status: 'success', data: company });
+                    document.getElementById('companyId').value = company.companyID || company.companyId;
+                } else {
+                    results.push({ step: 'Create Company', status: 'error', data: await companyRes.text() });
+                }
+            } catch (error) {
+                results.push({ step: 'Create Company', status: 'error', data: error.message });
+            }
+
+            // Create Client
+            try {
+                const clientData = {
+                    clientCode: `CL-${Date.now()}`,
+                    clientName: "ABC Corporation",
+                    phone: "03009876543",
+                    email: "abc@example.com",
+                    home: "Head Office",
+                    serveLocation: "Main Building",
+                    area: "Karachi",
+                    zone: "Zone-A", // Same zone as company
+                    status: "Active"
+                };
+
+                const clientRes = await fetch(`${apiBase}/Clients`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(clientData)
+                });
+
+                if (clientRes.ok) {
+                    const client = await clientRes.json();
+                    results.push({ step: 'Create Client', status: 'success', data: client });
+
+                    // Now create a job for this client
+                    await new Promise(resolve => setTimeout(resolve, 500));
+
+                    const jobData = {
+                        clientID: client.clientID || client.clientId,
+                        category: "AC Repair",
+                        clientRequest: "1.5 Ton Split AC",
+                        issueDescription: "Not cooling properly",
+                        crid: `CR-${Date.now()}`
+                    };
+
+                    const jobRes = await fetch(`${apiBase}/Dispatch/tickets`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(jobData)
+                    });
+
+                    if (jobRes.ok) {
+                        const job = await jobRes.json();
+                        results.push({ step: 'Create Job', status: 'success', data: job });
+                    } else {
+                        results.push({ step: 'Create Job', status: 'error', data: await jobRes.text() });
+                    }
+                } else {
+                    results.push({ step: 'Create Client', status: 'error', data: await clientRes.text() });
+                }
+            } catch (error) {
+                results.push({ step: 'Create Client/Job', status: 'error', data: error.message });
+            }
+
+            // Render results
+            const html = `
+                <div class="response">
+                    <h3>Sample Data Creation Results:</h3>
+                    ${results.map(r => `
+                        <div style="margin: 15px 0; padding: 15px; background: ${r.status === 'success' ? '#d4edda' : '#f8d7da'}; border-radius: 8px;">
+                            <h4>${r.step}: <span class="status-badge status-${r.status}">${r.status}</span></h4>
+                            <pre>${JSON.stringify(r.data, null, 2)}</pre>
+                        </div>
+                    `).join('')}
+                    <div class="solution-box">
+                        <h3>✅ Next Steps:</h3>
+                        <ul>
+                            <li>Run "Master Diagnostic" again to verify data</li>
+                            <li>Check Live Operating Room to see if job appears</li>
+                            <li>Zone matching: Company and Client both in "Zone-A"</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            resultsDiv.innerHTML = html;
+        }
+
+        async function testLiveOperatingRoom() {
+            const resultsDiv = document.getElementById('quickFixResults');
+            const apiBase = getApiBase();
+            const companyId = getCompanyId();
+
+            try {
+                const response = await fetch(`${apiBase}/Company/${companyId}/LiveOperatingRoom/requests`);
+                const data = await response.json();
+
+                const html = `
+                    <div class="response">
+                        <h3>🚨 Live Operating Room Test:</h3>
+                        <div class="grid" style="margin: 20px 0;">
+                            <div class="stat-card">
+                                <h3>${data.totalVisible || 0}</h3>
+                                <p>Visible Jobs</p>
+                            </div>
+                            <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <h3>${data.companyZone || 'N/A'}</h3>
+                                <p>Company Zone</p>
+                            </div>
+                            <div class="stat-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                <h3>${data.companyCity || 'N/A'}</h3>
+                                <p>Company City</p>
+                            </div>
+                        </div>
+                        ${data.jobs && data.jobs.length > 0 ? `
+                            <h4>📋 Available Jobs:</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Job ID</th>
+                                        <th>CR Number</th>
+                                        <th>Category</th>
+                                        <th>Client Zone</th>
+                                        <th>Zone Level</th>
+                                        <th>Time Left</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${data.jobs.map(job => `
+                                        <tr>
+                                            <td>${job.jobID}</td>
+                                            <td>${job.crNumber}</td>
+                                            <td>${job.category}</td>
+                                            <td>${job.clientZone}</td>
+                                            <td>${job.zoneLevelLabel}</td>
+                                            <td>${job.minutesRemaining ? Math.floor(job.minutesRemaining) + ' min' : 'Expired'}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        ` : '<p style="color: #856404; padding: 20px; background: #fff3cd; border-radius: 8px;">⚠️ No jobs visible in Live Operating Room</p>'}
+                        <h4>Raw Response:</h4>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    </div>
+                `;
+
+                resultsDiv.innerHTML = html;
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="response"><pre>${JSON.stringify({ error: error.message }, null, 2)}</pre></div>`;
+            }
+        }
+
+        async function checkZoneMatching() {
+            const resultsDiv = document.getElementById('quickFixResults');
+            const apiBase = getApiBase();
+            const companyId = getCompanyId();
+
+            resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Checking zone matching...</p></div>';
+
+            try {
+                // Get company
+                const companyRes = await fetch(`${apiBase}/Companies/${companyId}`);
+                const company = await companyRes.json();
+
+                // Get all jobs
+                const jobsRes = await fetch(`${apiBase}/Dispatch/tickets`);
+                const jobs = await jobsRes.json();
+
+                // Get all clients
+                const clientsRes = await fetch(`${apiBase}/Clients`);
+                const clients = await clientsRes.json();
+
+                const openJobs = jobs.filter(j => j.status === 'Open' || j.statusFlag === 'Open');
+
+                // Check matching
+                let matchAnalysis = openJobs.map(job => {
+                    const client = clients.find(c => c.clientID === job.clientID);
+                    const zoneMatch = client && client.zone === company.zone;
+                    const cityMatch = client && client.area === company.city;
+
+                    return {
+                        jobId: job.jobID,
+                        jobZone: client?.zone || 'N/A',
+                        companyZone: company.zone,
+                        zoneMatch: zoneMatch,
+                        cityMatch: cityMatch,
+                        broadcastLevel: job.broadcastZoneLevel || 0,
+                        willShow: (
+                            (job.broadcastZoneLevel === 0 && zoneMatch) ||
+                            (job.broadcastZoneLevel === 1 && (cityMatch || zoneMatch)) ||
+                            (job.broadcastZoneLevel >= 2)
+                        )
+                    };
+                });
+
+                const html = `
+                    <div class="response">
+                        <h3>🗺️ Zone Matching Analysis:</h3>
+                        <div class="issue-box">
+                            <h3>📍 Company Info:</h3>
+                            <p><strong>Company ID:</strong> ${company.companyID}</p>
+                            <p><strong>Company Name:</strong> ${company.companyName}</p>
+                            <p><strong>Zone:</strong> ${company.zone}</p>
+                            <p><strong>City:</strong> ${company.city}</p>
+                        </div>
+                        <h4>📊 Open Jobs Zone Matching:</h4>
+                        ${matchAnalysis.length > 0 ? `
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Job ID</th>
+                                        <th>Job Zone</th>
+                                        <th>Company Zone</th>
+                                        <th>Zone Match?</th>
+                                        <th>City Match?</th>
+                                        <th>Broadcast Level</th>
+                                        <th>Will Show?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${matchAnalysis.map(m => `
+                                        <tr style="background: ${m.willShow ? '#d4edda' : '#f8d7da'};">
+                                            <td>${m.jobId}</td>
+                                            <td>${m.jobZone}</td>
+                                            <td>${m.companyZone}</td>
+                                            <td>${m.zoneMatch ? '✅ Yes' : '❌ No'}</td>
+                                            <td>${m.cityMatch ? '✅ Yes' : '❌ No'}</td>
+                                            <td>Level ${m.broadcastLevel}</td>
+                                            <td><strong>${m.willShow ? '✅ YES' : '❌ NO'}</strong></td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        ` : '<p style="padding: 20px; background: #fff3cd; border-radius: 8px;">No open jobs found</p>'}
+                        <div class="solution-box">
+                            <h3>💡 Zone Matching Rules:</h3>
+                            <ul>
+                                <li><strong>Level 0:</strong> Job shows only if Client Zone = Company Zone (exact match)</li>
+                                <li><strong>Level 1:</strong> Job shows if Client City = Company City OR Zone match</li>
+                                <li><strong>Level 2:</strong> Job shows to ALL companies (broadcast expanded)</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+
+                resultsDiv.innerHTML = html;
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="response"><pre>${JSON.stringify({ error: error.message }, null, 2)}</pre></div>`;
+            }
+        }
+    </script>
+</body>
+</html>

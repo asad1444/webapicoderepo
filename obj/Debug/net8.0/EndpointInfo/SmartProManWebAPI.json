@@ -1,0 +1,7044 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "SmartProMan API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.LoginDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.LoginDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.RegisterDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.RegisterDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.RegisterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/forgot-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ForgotPasswordDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ForgotPasswordDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ForgotPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/verify-otp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.VerifyOtpDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.VerifyOtpDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.VerifyOtpDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/reset-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ResetPasswordDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ResetPasswordDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/profile": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.UpdateProfileDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.UpdateProfileDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.UpdateProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/change-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ChangePasswordDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ChangePasswordDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ChangePasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.LoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.LoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/auth/change-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.ChangePasswordRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.ChangePasswordRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.ChangePasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/auth/forgot-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.ForgotPasswordRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.ForgotPasswordRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.ForgotPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/auth/verify-otp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.VerifyOtpRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.VerifyOtpRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.VerifyOtpRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/auth/reset-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.ResetPasswordRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.ResetPasswordRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.DTOs.Technician.ResetPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Clients/summary": {
+      "get": {
+        "tags": [
+          "Clients"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Clients": {
+      "get": {
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+          {
+            "name": "zone",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Clients/{id}/status": {
+      "put": {
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Companies/summary": {
+      "get": {
+        "tags": [
+          "Companies"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Companies": {
+      "get": {
+        "tags": [
+          "Companies"
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cityZone",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "serviceType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Companies"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Companies/{id}": {
+      "get": {
+        "tags": [
+          "Companies"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Companies"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Companies"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Companies/{id}/status": {
+      "put": {
+        "tags": [
+          "Companies"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/company/auth/register": {
+      "post": {
+        "tags": [
+          "CompanyAuth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.CompanyRegisterDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.CompanyRegisterDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.CompanyRegisterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/company/auth/login": {
+      "post": {
+        "tags": [
+          "CompanyAuth"
+        ],
+        "parameters": [
+          {
+            "name": "client",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.CompanyLoginDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.CompanyLoginDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.CompanyLoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/company/auth/change-password": {
+      "post": {
+        "tags": [
+          "CompanyAuth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.ChangePasswordDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.ChangePasswordDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.ChangePasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/company/auth/forgot-password": {
+      "post": {
+        "tags": [
+          "CompanyAuth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.ForgotPasswordDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.ForgotPasswordDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.ForgotPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/company/auth/verify-otp": {
+      "post": {
+        "tags": [
+          "CompanyAuth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.VerifyOtpDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.VerifyOtpDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.VerifyOtpDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/company/auth/reset-password": {
+      "post": {
+        "tags": [
+          "CompanyAuth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.ResetPasswordDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.ResetPasswordDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.ResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/company/auth/profile": {
+      "get": {
+        "tags": [
+          "CompanyAuth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "CompanyAuth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.UpdateCompanyProfileDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.UpdateCompanyProfileDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.UpdateCompanyProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/Dashboard/kpi": {
+      "get": {
+        "tags": [
+          "CompanyDashboard"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/Dashboard/job-status-chart": {
+      "get": {
+        "tags": [
+          "CompanyDashboard"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/Dashboard/live-job-locations": {
+      "get": {
+        "tags": [
+          "CompanyDashboard"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/Dashboard/recent-jobs": {
+      "get": {
+        "tags": [
+          "CompanyDashboard"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/Dashboard/monthly-distribution": {
+      "get": {
+        "tags": [
+          "CompanyDashboard"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "range",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "monthly"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/Dashboard/job-trend": {
+      "get": {
+        "tags": [
+          "CompanyDashboard"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/Dashboard/revenue-trend": {
+      "get": {
+        "tags": [
+          "CompanyDashboard"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/Dashboard/technician-stats": {
+      "get": {
+        "tags": [
+          "CompanyDashboard"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/DailyWorkReports": {
+      "get": {
+        "tags": [
+          "CompanyDWR"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/DailyWorkReports/{dwrId}": {
+      "get": {
+        "tags": [
+          "CompanyDWR"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "dwrId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/DailyWorkReports/{dwrId}/status": {
+      "put": {
+        "tags": [
+          "CompanyDWR"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "dwrId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/MasterCards/{masterCardId}": {
+      "get": {
+        "tags": [
+          "CompanyMasterCards"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "masterCardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/MasterCards/job/{jobId}": {
+      "get": {
+        "tags": [
+          "CompanyMasterCards"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/MasterCards/{masterCardId}/proforma-invoice": {
+      "get": {
+        "tags": [
+          "CompanyMasterCards"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "masterCardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "CompanyMasterCards"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "masterCardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.ProformaInvoice"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.ProformaInvoice"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.ProformaInvoice"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/MasterCards": {
+      "get": {
+        "tags": [
+          "CompanyMasterCards"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/Payments": {
+      "get": {
+        "tags": [
+          "CompanyPayments"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/CompanyTechnician/add": {
+      "post": {
+        "tags": [
+          "CompanyTechnician"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.AddTechnicianDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.AddTechnicianDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.AddTechnicianDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/CompanyTechnician/list": {
+      "get": {
+        "tags": [
+          "CompanyTechnician"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "all"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/CompanyTechnician/{technicianId}": {
+      "get": {
+        "tags": [
+          "CompanyTechnician"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/CompanyTechnician/{technicianId}/update": {
+      "put": {
+        "tags": [
+          "CompanyTechnician"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.UpdateTechnicianDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.UpdateTechnicianDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.UpdateTechnicianDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/CompanyTechnician/{technicianId}/delete": {
+      "delete": {
+        "tags": [
+          "CompanyTechnician"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/CompanyTechnician/{technicianId}/reset-password": {
+      "post": {
+        "tags": [
+          "CompanyTechnician"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.TechnicianResetPasswordDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.TechnicianResetPasswordDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Company.TechnicianResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/CompanyTechnician/stats": {
+      "get": {
+        "tags": [
+          "CompanyTechnician"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DailyWorkReports/auto-data/{technicianId}": {
+      "get": {
+        "tags": [
+          "DailyWorkReports"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DailyWorkReports": {
+      "post": {
+        "tags": [
+          "DailyWorkReports"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.DailyWorkReport"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.DailyWorkReport"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.DailyWorkReport"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.DailyWorkReport"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.DailyWorkReport"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.DailyWorkReport"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/DailyWorkReports/search": {
+      "get": {
+        "tags": [
+          "DailyWorkReports"
+        ],
+        "parameters": [
+          {
+            "name": "companyName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DailyWorkReports/{id}": {
+      "get": {
+        "tags": [
+          "DailyWorkReports"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dashboard/kpi": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dashboard/charts": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "parameters": [
+          {
+            "name": "range",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "monthly"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dashboard/live-map": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dashboard/live-jobs": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/dashboard/{technicianId}": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/dashboard/{technicianId}/notifications": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/dashboard/notifications/{id}/read": {
+      "post": {
+        "tags": [
+          "Dashboard"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/dashboard/{technicianId}/duty-status": {
+      "put": {
+        "tags": [
+          "Dashboard"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dispatch/tickets": {
+      "get": {
+        "tags": [
+          "Dispatch"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Dispatch"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.Job"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.Job"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.Job"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dispatch/{jobId}/matching-companies": {
+      "get": {
+        "tags": [
+          "Dispatch"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dispatch/bids": {
+      "post": {
+        "tags": [
+          "Dispatch"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.DispatchBid"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.DispatchBid"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.DispatchBid"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dispatch/{jobId}/award": {
+      "post": {
+        "tags": [
+          "Dispatch"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Invoices": {
+      "get": {
+        "tags": [
+          "Invoices"
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Invoices/{id}": {
+      "get": {
+        "tags": [
+          "Invoices"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Invoices/job/{jobId}": {
+      "get": {
+        "tags": [
+          "Invoices"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Invoices/summary": {
+      "get": {
+        "tags": [
+          "Invoices"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/JobMessages/{jobId}": {
+      "get": {
+        "tags": [
+          "JobMessages"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SmartProManWebAPI.Models.JobMessage"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SmartProManWebAPI.Models.JobMessage"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SmartProManWebAPI.Models.JobMessage"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/JobMessages": {
+      "post": {
+        "tags": [
+          "JobMessages"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.JobMessage"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.JobMessage"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.JobMessage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.JobMessage"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.JobMessage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.JobMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/technician/job-status/{jobId}/tracker": {
+      "get": {
+        "tags": [
+          "JobStatus"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/job-status/{jobId}/on-way": {
+      "post": {
+        "tags": [
+          "JobStatus"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/job-status/{jobId}/arrived": {
+      "post": {
+        "tags": [
+          "JobStatus"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/job-status/{jobId}/unit-reg-started": {
+      "post": {
+        "tags": [
+          "JobStatus"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/job-status/{jobId}/unit-reg-done": {
+      "post": {
+        "tags": [
+          "JobStatus"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/job-status/{jobId}/proforma-done": {
+      "post": {
+        "tags": [
+          "JobStatus"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/job-status/{jobId}/start-payment": {
+      "post": {
+        "tags": [
+          "JobStatus"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/job-status/{jobId}/complete": {
+      "post": {
+        "tags": [
+          "JobStatus"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/jobs/{jobId}/payment": {
+      "post": {
+        "tags": [
+          "JobStatus"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Technician.JobStatusController.PaymentRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Technician.JobStatusController.PaymentRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Technician.JobStatusController.PaymentRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/JobStuckHistory": {
+      "get": {
+        "tags": [
+          "JobStuckHistory"
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/JobStuckHistory/job/{jobId}": {
+      "get": {
+        "tags": [
+          "JobStuckHistory"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/JobStuckHistory/{id}/resolve": {
+      "put": {
+        "tags": [
+          "JobStuckHistory"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/LiveOperatingRoom/requests": {
+      "get": {
+        "tags": [
+          "LiveOperatingRoom"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/LiveOperatingRoom/bid/{requestId}": {
+      "post": {
+        "tags": [
+          "LiveOperatingRoom"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/LiveOperatingRoom/check-bid-window/{requestId}": {
+      "post": {
+        "tags": [
+          "LiveOperatingRoom"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/LiveOperatingRoom/won-requests": {
+      "get": {
+        "tags": [
+          "LiveOperatingRoom"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/LiveOperatingRoom/my-bids": {
+      "get": {
+        "tags": [
+          "LiveOperatingRoom"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/LiveOperatingRoom/technicians": {
+      "get": {
+        "tags": [
+          "LiveOperatingRoom"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/LiveOperatingRoom/assign-technician/{requestId}": {
+      "post": {
+        "tags": [
+          "LiveOperatingRoom"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/LiveOperatingRoom/bid-status/{requestId}": {
+      "get": {
+        "tags": [
+          "LiveOperatingRoom"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MasterCards": {
+      "get": {
+        "tags": [
+          "MasterCards"
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "MasterCards"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.MasterCard"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.MasterCard"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.MasterCard"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.MasterCard"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.MasterCard"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.MasterCard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MasterCards/{id}": {
+      "get": {
+        "tags": [
+          "MasterCards"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MasterCards/{id}/invoices": {
+      "post": {
+        "tags": [
+          "MasterCards"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ProformaInvoiceDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ProformaInvoiceDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ProformaInvoiceDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MasterCards/{id}/status": {
+      "put": {
+        "tags": [
+          "MasterCards"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications/technician/{technicianId}": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications/company/{companyId}": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications/report-delay": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ReportDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ReportDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ReportDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications/report-stuck": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ReportDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ReportDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.ReportDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications/{id}/read": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications/company/{companyId}/read-all": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications/technician/{technicianId}/read-all": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications/{id}": {
+      "delete": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.SendNotificationDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.SendNotificationDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.SendNotificationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PayFast/initiate": {
+      "post": {
+        "tags": [
+          "PayFast"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.InitiatePaymentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.InitiatePaymentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.InitiatePaymentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PayFast/webhook": {
+      "post": {
+        "tags": [
+          "PayFast"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Basket_id": {
+                    "type": "string"
+                  },
+                  "Transaction_id": {
+                    "type": "string"
+                  },
+                  "Err_code": {
+                    "type": "string"
+                  },
+                  "Err_msg": {
+                    "type": "string"
+                  },
+                  "Payment_method": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "Basket_id": {
+                  "style": "form"
+                },
+                "Transaction_id": {
+                  "style": "form"
+                },
+                "Err_code": {
+                  "style": "form"
+                },
+                "Err_msg": {
+                  "style": "form"
+                },
+                "Payment_method": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments": {
+      "get": {
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "isSuccessful",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Payments"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.RecordPaymentDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.RecordPaymentDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.RecordPaymentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments/{id}": {
+      "get": {
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments/invoice/{invoiceId}": {
+      "get": {
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/payments/{technicianId}": {
+      "get": {
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "today"
+            }
+          },
+          {
+            "name": "method",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "all"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/payments/{technicianId}/slip/{paymentId}": {
+      "get": {
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/payments/{technicianId}/slip/{paymentId}/download": {
+      "get": {
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/profile/{technicianId}": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Profile"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Technician.UpdateProfileDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Technician.UpdateProfileDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Technician.UpdateProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/profile/{technicianId}/jobs-summary": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "monthly"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Requests": {
+      "get": {
+        "tags": [
+          "Requests"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Requests"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.RequestCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.RequestCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.RequestCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.Request"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.Request"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.Request"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Requests/{id}": {
+      "get": {
+        "tags": [
+          "Requests"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.Request"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.Request"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartProManWebAPI.Models.Request"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Requests"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.RequestCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.RequestCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.RequestCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Requests"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Requests/{id}/status": {
+      "put": {
+        "tags": [
+          "Requests"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Requests/{id}/assign-foreman": {
+      "post": {
+        "tags": [
+          "Requests"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Requests/{crn}/award": {
+      "post": {
+        "tags": [
+          "Requests"
+        ],
+        "parameters": [
+          {
+            "name": "crn",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.AwardRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.AwardRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.AwardRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/Technicians": {
+      "get": {
+        "tags": [
+          "TechnicianControlCenter"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TechnicianControlCenter"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.Technician"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.Technician"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.Technician"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/Technicians/{technicianId}/status": {
+      "put": {
+        "tags": [
+          "TechnicianControlCenter"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Company/{companyId}/Technicians/dashboard-summary": {
+      "get": {
+        "tags": [
+          "TechnicianControlCenter"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/jobs/{technicianId}": {
+      "get": {
+        "tags": [
+          "TechnicianJobs"
+        ],
+        "parameters": [
+          {
+            "name": "technicianId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/jobs/detail/{jobId}": {
+      "get": {
+        "tags": [
+          "TechnicianJobs"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/jobs/{jobId}/start": {
+      "post": {
+        "tags": [
+          "TechnicianJobs"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/jobs/{jobId}/on-way": {
+      "post": {
+        "tags": [
+          "TechnicianJobs"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/jobs/{jobId}/arrived": {
+      "post": {
+        "tags": [
+          "TechnicianJobs"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/jobs/proxy-directions": {
+      "get": {
+        "tags": [
+          "TechnicianJobs"
+        ],
+        "parameters": [
+          {
+            "name": "originLat",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "originLng",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "destLat",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "destLng",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/proforma/{jobId}": {
+      "get": {
+        "tags": [
+          "TechnicianProforma"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TechnicianProforma"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Technician.ProformaInvoiceDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Technician.ProformaInvoiceDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Technician.ProformaInvoiceDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/proforma/{jobId}/generate": {
+      "post": {
+        "tags": [
+          "TechnicianProforma"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/technician/proforma/by-mastercard/{masterCardId}": {
+      "get": {
+        "tags": [
+          "TechnicianProforma"
+        ],
+        "parameters": [
+          {
+            "name": "masterCardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Technicians/summary": {
+      "get": {
+        "tags": [
+          "Technicians"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Technicians": {
+      "get": {
+        "tags": [
+          "Technicians"
+        ],
+        "parameters": [
+          {
+            "name": "liveStatus",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Technicians/{id}": {
+      "get": {
+        "tags": [
+          "Technicians"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Technicians"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.UpdateTechnicianDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.UpdateTechnicianDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.UpdateTechnicianDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Technicians"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Technicians/{id}/status": {
+      "put": {
+        "tags": [
+          "Technicians"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Tracking/location": {
+      "post": {
+        "tags": [
+          "Tracking"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.TechnicianLocation"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.TechnicianLocation"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Models.TechnicianLocation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Tracking/job/{jobId}/status": {
+      "put": {
+        "tags": [
+          "Tracking"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.JobTrackingUpdateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.JobTrackingUpdateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.JobTrackingUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UnitRegistrations/auto-data/job/{jobId}": {
+      "get": {
+        "tags": [
+          "UnitRegistrations"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UnitRegistrations/auto-data/{clientId}": {
+      "get": {
+        "tags": [
+          "UnitRegistrations"
+        ],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UnitRegistrations/{id}": {
+      "get": {
+        "tags": [
+          "UnitRegistrations"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UnitRegistrations/by-job/{jobId}": {
+      "get": {
+        "tags": [
+          "UnitRegistrations"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UnitRegistrations/qr/{jobId}": {
+      "get": {
+        "tags": [
+          "UnitRegistrations"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UnitRegistrations/search": {
+      "get": {
+        "tags": [
+          "UnitRegistrations"
+        ],
+        "parameters": [
+          {
+            "name": "companyName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UnitRegistrations": {
+      "post": {
+        "tags": [
+          "UnitRegistrations"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.UnitRegistrationDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.UnitRegistrationDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.UnitRegistrationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UnitRegistrations/{id}/remarks": {
+      "put": {
+        "tags": [
+          "UnitRegistrations"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SmartProManWebAPI.WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SmartProManWebAPI.WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SmartProManWebAPI.WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SmartProManWebAPI.Controllers.AwardRequestDto": {
+        "required": [
+          "companyId"
+        ],
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "zone": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.ChangePasswordDto": {
+        "type": "object",
+        "properties": {
+          "currentPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Company.AddTechnicianDto": {
+        "required": [
+          "cnic",
+          "confirmPassword",
+          "designation",
+          "email",
+          "fullName",
+          "password",
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "maxLength": 150,
+            "minLength": 1,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 150,
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "phone": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "format": "tel"
+          },
+          "cnic": {
+            "maxLength": 13,
+            "minLength": 13,
+            "type": "string"
+          },
+          "designation": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "password": {
+            "minLength": 6,
+            "type": "string"
+          },
+          "confirmPassword": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Company.ChangePasswordDto": {
+        "type": "object",
+        "properties": {
+          "currentPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Company.CompanyLoginDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Company.CompanyRegisterDto": {
+        "type": "object",
+        "properties": {
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyLogo": {
+            "type": "string",
+            "nullable": true
+          },
+          "inchargeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "inchargePhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "zone": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Company.ForgotPasswordDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Company.ResetPasswordDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "otp": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Company.TechnicianResetPasswordDto": {
+        "required": [
+          "confirmPassword",
+          "newPassword"
+        ],
+        "type": "object",
+        "properties": {
+          "newPassword": {
+            "minLength": 6,
+            "type": "string"
+          },
+          "confirmPassword": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Company.UpdateCompanyProfileDto": {
+        "type": "object",
+        "properties": {
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyLogo": {
+            "type": "string",
+            "nullable": true
+          },
+          "inchargeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "inchargePhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "zone": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Company.UpdateTechnicianDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "designation": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceAreas": {
+            "type": "string",
+            "nullable": true
+          },
+          "skills": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseCertification": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Company.VerifyOtpDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "otp": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.ForgotPasswordDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.InitiatePaymentRequest": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.InvoiceItemDto": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "discount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tax": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.JobTrackingUpdateDto": {
+        "type": "object",
+        "properties": {
+          "step": {
+            "type": "string",
+            "nullable": true
+          },
+          "eta": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.LoginDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.MediaDto": {
+        "type": "object",
+        "properties": {
+          "mediaType": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "filePath": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.ProformaInvoiceDto": {
+        "type": "object",
+        "properties": {
+          "firNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "quoteNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "incidentDetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "circuitAHighPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitALowPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitAGT": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitART": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitAPower": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitAAmpere": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBHighPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBLowPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBGT": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBRT": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBPower": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBAmpere": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "voucherNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "voucherType": {
+            "type": "string",
+            "nullable": true
+          },
+          "voucherExpiry": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finalNote": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.InvoiceItemDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.RecordPaymentDto": {
+        "type": "object",
+        "properties": {
+          "invoiceId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paymentMethod": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Enums.PaymentMethod"
+          },
+          "amountReceived": {
+            "type": "number",
+            "format": "double"
+          },
+          "transactionReference": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.RegisterDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.ReportDto": {
+        "type": "object",
+        "properties": {
+          "technicianId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "jobId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "expectedDelay": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.RequestCreateDto": {
+        "required": [
+          "category",
+          "clientContact",
+          "clientName",
+          "clientRequest",
+          "kindOf",
+          "zone"
+        ],
+        "type": "object",
+        "properties": {
+          "clientName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "clientContact": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "clientRequest": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "kindOf": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "category": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "zone": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "specialInstructions": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "priority": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.ResetPasswordDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "otp": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.SendNotificationDto": {
+        "type": "object",
+        "properties": {
+          "technicianIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedModule": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedRecordId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Technician.JobStatusController.PaymentRequestDto": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "receivedBy": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Technician.ProformaInvoiceDto": {
+        "type": "object",
+        "properties": {
+          "firNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "quoteNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "incidentDetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceDetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "finalNote": {
+            "type": "string",
+            "nullable": true
+          },
+          "chatBox": {
+            "type": "string",
+            "nullable": true
+          },
+          "voucherNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "voucherType": {
+            "type": "string",
+            "nullable": true
+          },
+          "voucherExpiry": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "invoiceDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "subTotal": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tax": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "discount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "grandTotal": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitAHighPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitALowPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitAGT": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitART": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitAPower": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitAAmpere": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBHighPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBLowPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBGT": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBRT": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBPower": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBAmpere": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.Technician.ProformaItemDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Technician.ProformaItemDto": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "discount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tax": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "totalPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.Technician.UpdateProfileDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "cnic": {
+            "type": "string",
+            "nullable": true
+          },
+          "photo": {
+            "type": "string",
+            "nullable": true
+          },
+          "designation": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceAreas": {
+            "type": "string",
+            "nullable": true
+          },
+          "skills": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseCertification": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.UnitRegistrationDto": {
+        "type": "object",
+        "properties": {
+          "jobID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "technicianID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "clientID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "modelNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "floor": {
+            "type": "string",
+            "nullable": true
+          },
+          "floorZone": {
+            "type": "string",
+            "nullable": true
+          },
+          "topZone": {
+            "type": "string",
+            "nullable": true
+          },
+          "adminRemarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "media": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SmartProManWebAPI.Controllers.MediaDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.UpdateProfileDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.UpdateTechnicianDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "designation": {
+            "type": "string",
+            "nullable": true
+          },
+          "photo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Controllers.VerifyOtpDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "otp": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.DTOs.Technician.ChangePasswordRequest": {
+        "type": "object",
+        "properties": {
+          "technicianId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.DTOs.Technician.ForgotPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.DTOs.Technician.LoginRequest": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.DTOs.Technician.ResetPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "otp": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.DTOs.Technician.VerifyOtpRequest": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "otp": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Models.Client": {
+        "required": [
+          "clientName"
+        ],
+        "type": "object",
+        "properties": {
+          "clientID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "clientCode": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "clientName": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "logo": {
+            "maxLength": 500,
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "maxLength": 20,
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 150,
+            "type": "string",
+            "nullable": true
+          },
+          "home": {
+            "maxLength": 250,
+            "type": "string",
+            "nullable": true
+          },
+          "serveLocation": {
+            "maxLength": 250,
+            "type": "string",
+            "nullable": true
+          },
+          "area": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "street": {
+            "maxLength": 150,
+            "type": "string",
+            "nullable": true
+          },
+          "floor": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "floorZone": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "topZone": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "zone": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "status": {
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Models.Company": {
+        "required": [
+          "companyName",
+          "inchargeName"
+        ],
+        "type": "object",
+        "properties": {
+          "companyID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyName": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "companyLogo": {
+            "type": "string",
+            "nullable": true
+          },
+          "inchargeName": {
+            "maxLength": 150,
+            "minLength": 1,
+            "type": "string"
+          },
+          "inchargePhone": {
+            "maxLength": 20,
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "zone": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "serviceType": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 150,
+            "type": "string",
+            "nullable": true
+          },
+          "passwordHash": {
+            "maxLength": 500,
+            "type": "string",
+            "nullable": true
+          },
+          "isDefaultPassword": {
+            "type": "boolean"
+          },
+          "passwordResetToken": {
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "passwordResetExpiry": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Models.DailyWorkReport": {
+        "required": [
+          "companyID",
+          "technicianID"
+        ],
+        "type": "object",
+        "properties": {
+          "dwrid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "technicianID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dutyIn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dutyOut": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "pendingJobs": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "repeatJobs": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "completedJobs": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "walletBalance": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "toolBox": {
+            "type": "string",
+            "nullable": true
+          },
+          "spareParts": {
+            "type": "string",
+            "nullable": true
+          },
+          "finalNote": {
+            "type": "string",
+            "nullable": true
+          },
+          "record": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "company": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+          },
+          "technician": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Technician"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Models.DispatchBid": {
+        "required": [
+          "companyID",
+          "requestID"
+        ],
+        "type": "object",
+        "properties": {
+          "bidID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requestID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "jobID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "companyID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "estimatedArrival": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bidTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isWinner": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "status": {
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "request": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Request"
+          },
+          "job": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Job"
+          },
+          "company": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Models.Enums.PaymentMethod": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "SmartProManWebAPI.Models.Job": {
+        "type": "object",
+        "properties": {
+          "jobID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requestID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "companyID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "technicianID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "assignmentSource": {
+            "maxLength": 20,
+            "type": "string",
+            "nullable": true
+          },
+          "crNumber": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "crid": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "clientRequest": {
+            "maxLength": 200,
+            "type": "string",
+            "nullable": true
+          },
+          "issueDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "assignedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "bidOpenedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "broadcastZoneLevel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "request": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Request"
+          },
+          "client": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Client"
+          },
+          "company": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+          },
+          "technician": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Technician"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Models.JobMessage": {
+        "required": [
+          "jobID"
+        ],
+        "type": "object",
+        "properties": {
+          "messageID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "jobID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "senderType": {
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "senderID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "sentAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "job": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Job"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Models.MasterCard": {
+        "required": [
+          "clientID",
+          "companyID",
+          "jobID",
+          "technicianID"
+        ],
+        "type": "object",
+        "properties": {
+          "masterCardID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "jobID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "clientID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "technicianID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "job": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Job"
+          },
+          "client": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Client"
+          },
+          "company": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+          },
+          "technician": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Technician"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Models.ProformaInvoice": {
+        "required": [
+          "masterCardID"
+        ],
+        "type": "object",
+        "properties": {
+          "invoiceID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "masterCardID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firNumber": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "quoteNumber": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "incidentDetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceDetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "chatBox": {
+            "type": "string",
+            "nullable": true
+          },
+          "technicianPhoto": {
+            "maxLength": 500,
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "circuitAHighPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitALowPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitAGT": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitART": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitAPower": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitAAmpere": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBHighPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBLowPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBGT": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBRT": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBPower": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "circuitBAmpere": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "voucherNumber": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "voucherType": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "voucherExpiry": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finalNote": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "subTotal": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tax": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "discount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "grandTotal": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "masterCard": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.MasterCard"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Models.Request": {
+        "required": [
+          "category",
+          "clientContact",
+          "clientName",
+          "clientRequest",
+          "kindOf",
+          "zone"
+        ],
+        "type": "object",
+        "properties": {
+          "requestID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "clientRequestNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "clientName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "clientContact": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "clientRequest": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "kindOf": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "category": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "zone": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "status": {
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "clientStatus": {
+            "maxLength": 20,
+            "type": "string",
+            "nullable": true
+          },
+          "companyID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bidOpenedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "broadcastZoneLevel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "jobID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "specialInstructions": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "priority": {
+            "maxLength": 20,
+            "type": "string",
+            "nullable": true
+          },
+          "company": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+          },
+          "job": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Job"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Models.Technician": {
+        "required": [
+          "companyID",
+          "designation",
+          "email",
+          "fullName",
+          "passwordHash",
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "technicianID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "technicianCode": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "fullName": {
+            "maxLength": 150,
+            "minLength": 1,
+            "type": "string"
+          },
+          "photo": {
+            "maxLength": 500,
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string"
+          },
+          "designation": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "passwordHash": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "isDefaultPassword": {
+            "type": "boolean"
+          },
+          "passwordResetToken": {
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "passwordResetExpiry": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "walletBalance": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "liveStatus": {
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "approvalStatus": {
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "totalJobsSolved": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 150,
+            "minLength": 1,
+            "type": "string"
+          },
+          "cnic": {
+            "maxLength": 20,
+            "type": "string",
+            "nullable": true
+          },
+          "dateOfJoining": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "serviceAreas": {
+            "maxLength": 300,
+            "type": "string",
+            "nullable": true
+          },
+          "skills": {
+            "maxLength": 500,
+            "type": "string",
+            "nullable": true
+          },
+          "licenseCertification": {
+            "maxLength": 300,
+            "type": "string",
+            "nullable": true
+          },
+          "rating": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "company": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Company"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.Models.TechnicianLocation": {
+        "required": [
+          "technicianID"
+        ],
+        "type": "object",
+        "properties": {
+          "locationID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "technicianID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "recordedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "technician": {
+            "$ref": "#/components/schemas/SmartProManWebAPI.Models.Technician"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmartProManWebAPI.WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Enter your JWT token. Example: Bearer {your_token}",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Technician Management - Test Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .response {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            display: none;
+        }
+
+        .response.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .response.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .response.error {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #68d391;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .tech-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .tech-card p {
+            margin: 5px 0;
+            opacity: 0.95;
+        }
+
+        .tech-card .status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.2);
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .stat-box p {
+            opacity: 0.9;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-group button {
+            flex: 1;
+            min-width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛠️ Company Technician Management</h1>
+
+        <!-- Company ID Input -->
+        <div class="section">
+            <h2>🏢 Company Settings</h2>
+            <div class="form-group">
+                <label>Company ID:</label>
+                <input type="number" id="companyId" value="1" placeholder="Enter Company ID">
+            </div>
+        </div>
+
+        <!-- Add Technician -->
+        <div class="section">
+            <h2>➕ Add New Technician</h2>
+            <form id="addTechnicianForm">
+                <div class="grid">
+                    <div class="form-group">
+                        <label>Full Name: *</label>
+                        <input type="text" id="fullName" required placeholder="e.g., Ali Hassan">
+                    </div>
+                    <div class="form-group">
+                        <label>Email: *</label>
+                        <input type="email" id="email" required placeholder="e.g., ali@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone: *</label>
+                        <input type="tel" id="phone" required placeholder="e.g., +92-300-1234567">
+                    </div>
+                    <div class="form-group">
+                        <label>CNIC: *</label>
+                        <input type="text" id="cnic" required maxlength="13" minlength="13" placeholder="13 digits (e.g., 1234567890123)">
+                    </div>
+                    <div class="form-group">
+                        <label>Designation: *</label>
+                        <input type="text" id="designation" required placeholder="e.g., Senior Technician">
+                    </div>
+                    <div class="form-group">
+                        <label>Password: *</label>
+                        <input type="password" id="password" required minlength="6" placeholder="Min 6 characters">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password: *</label>
+                        <input type="password" id="confirmPassword" required placeholder="Re-enter password">
+                    </div>
+                </div>
+                <button type="submit">➕ Add Technician</button>
+            </form>
+            <div class="response" id="addResponse"></div>
+        </div>
+
+        <!-- View Statistics -->
+        <div class="section">
+            <h2>📊 Technician Statistics</h2>
+            <button onclick="getTechnicianStats()">📊 Load Statistics</button>
+            <div class="response" id="statsResponse"></div>
+        </div>
+
+        <!-- View All Technicians -->
+        <div class="section">
+            <h2>👥 All Technicians</h2>
+            <div class="form-group">
+                <label>Filter by Status:</label>
+                <select id="statusFilter">
+                    <option value="all">All</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                    <option value="Pending">Pending</option>
+                </select>
+            </div>
+            <button onclick="getTechnicians()">🔍 Load Technicians</button>
+            <div class="response" id="listResponse"></div>
+        </div>
+
+        <!-- Update Technician -->
+        <div class="section">
+            <h2>✏️ Update Technician</h2>
+            <form id="updateTechnicianForm">
+                <div class="form-group">
+                    <label>Technician ID: *</label>
+                    <input type="number" id="updateTechId" required placeholder="Enter Technician ID">
+                </div>
+                <div class="grid">
+                    <div class="form-group">
+                        <label>Full Name:</label>
+                        <input type="text" id="updateFullName" placeholder="New name (optional)">
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" id="updateEmail" placeholder="New email (optional)">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone:</label>
+                        <input type="tel" id="updatePhone" placeholder="New phone (optional)">
+                    </div>
+                    <div class="form-group">
+                        <label>Designation:</label>
+                        <input type="text" id="updateDesignation" placeholder="e.g., Senior Technician">
+                    </div>
+                    <div class="form-group">
+                        <label>Skills:</label>
+                        <input type="text" id="updateSkills" placeholder="e.g., AC Repair, Installation">
+                    </div>
+                    <div class="form-group">
+                        <label>Service Areas:</label>
+                        <input type="text" id="updateServiceAreas" placeholder="e.g., Karachi, Lahore">
+                    </div>
+                </div>
+                <button type="submit">✏️ Update Technician</button>
+            </form>
+            <div class="response" id="updateResponse"></div>
+        </div>
+
+        <!-- Reset Password -->
+        <div class="section">
+            <h2>🔑 Reset Technician Password</h2>
+            <form id="resetPasswordForm">
+                <div class="form-group">
+                    <label>Technician ID: *</label>
+                    <input type="number" id="resetTechId" required placeholder="Enter Technician ID">
+                </div>
+                <div class="grid">
+                    <div class="form-group">
+                        <label>New Password: *</label>
+                        <input type="password" id="newPassword" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password: *</label>
+                        <input type="password" id="confirmNewPassword" required>
+                    </div>
+                </div>
+                <button type="submit">🔑 Reset Password</button>
+            </form>
+            <div class="response" id="resetResponse"></div>
+        </div>
+
+        <!-- Delete Technician -->
+        <div class="section">
+            <h2>🗑️ Delete/Deactivate Technician</h2>
+            <div class="form-group">
+                <label>Technician ID: *</label>
+                <input type="number" id="deleteTechId" required placeholder="Enter Technician ID">
+            </div>
+            <button onclick="deleteTechnician()" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%)">🗑️ Delete Technician</button>
+            <div class="response" id="deleteResponse"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://localhost:7296/api';
+
+        function getCompanyId() {
+            return document.getElementById('companyId').value;
+        }
+
+        function showResponse(elementId, data, isSuccess = true) {
+            const element = document.getElementById(elementId);
+            element.className = `response show ${isSuccess ? 'success' : 'error'}`;
+            element.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+
+        // Add Technician
+        document.getElementById('addTechnicianForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const companyId = getCompanyId();
+            const data = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                cnic: document.getElementById('cnic').value,
+                designation: document.getElementById('designation').value,
+                password: document.getElementById('password').value,
+                confirmPassword: document.getElementById('confirmPassword').value
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/Company/${companyId}/CompanyTechnician/add`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                showResponse('addResponse', result, response.ok);
+                if (response.ok) {
+                    e.target.reset();
+                }
+            } catch (error) {
+                showResponse('addResponse', { error: error.message }, false);
+            }
+        });
+
+        // Get Technician Stats
+        async function getTechnicianStats() {
+            const companyId = getCompanyId();
+            try {
+                const response = await fetch(`${API_BASE}/Company/${companyId}/CompanyTechnician/stats`);
+                const result = await response.json();
+                
+                if (response.ok) {
+                    const statsHTML = `
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <h3>${result.totalTechnicians}</h3>
+                                <p>Total Technicians</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>${result.activeTechnicians}</h3>
+                                <p>Active</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>${result.onlineTechnicians}</h3>
+                                <p>Online</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>${result.onJobTechnicians}</h3>
+                                <p>On Job</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>${result.availableForWork}</h3>
+                                <p>Available</p>
+                            </div>
+                        </div>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                    document.getElementById('statsResponse').innerHTML = statsHTML;
+                    document.getElementById('statsResponse').className = 'response show success';
+                } else {
+                    showResponse('statsResponse', result, false);
+                }
+            } catch (error) {
+                showResponse('statsResponse', { error: error.message }, false);
+            }
+        }
+
+        // Get All Technicians
+        async function getTechnicians() {
+            const companyId = getCompanyId();
+            const status = document.getElementById('statusFilter').value;
+            try {
+                const response = await fetch(`${API_BASE}/Company/${companyId}/CompanyTechnician/list?status=${status}`);
+                const result = await response.json();
+                
+                if (response.ok && result.technicians) {
+                    const techGrid = result.technicians.map(tech => `
+                        <div class="tech-card">
+                            <h3>${tech.fullName}</h3>
+                            <p><strong>ID:</strong> ${tech.technicianID} | <strong>Code:</strong> ${tech.technicianCode}</p>
+                            <p>📧 ${tech.email}</p>
+                            <p>📱 ${tech.phone}</p>
+                            <p>💼 ${tech.designation || 'N/A'}</p>
+                            <p>⭐ Rating: ${tech.rating || 0}/5</p>
+                            <p>✅ Jobs: ${tech.totalJobsSolved || 0}</p>
+                            <span class="status">${tech.liveStatus} | ${tech.approvalStatus}</span>
+                        </div>
+                    `).join('');
+                    
+                    const html = `
+                        <h3>Total: ${result.totalTechnicians} Technicians</h3>
+                        <div class="grid">${techGrid}</div>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                    document.getElementById('listResponse').innerHTML = html;
+                    document.getElementById('listResponse').className = 'response show success';
+                } else {
+                    showResponse('listResponse', result, false);
+                }
+            } catch (error) {
+                showResponse('listResponse', { error: error.message }, false);
+            }
+        }
+
+        // Update Technician
+        document.getElementById('updateTechnicianForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const companyId = getCompanyId();
+            const techId = document.getElementById('updateTechId').value;
+            const data = {
+                fullName: document.getElementById('updateFullName').value,
+                email: document.getElementById('updateEmail').value,
+                phone: document.getElementById('updatePhone').value,
+                designation: document.getElementById('updateDesignation').value,
+                skills: document.getElementById('updateSkills').value,
+                serviceAreas: document.getElementById('updateServiceAreas').value
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/Company/${companyId}/CompanyTechnician/${techId}/update`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                showResponse('updateResponse', result, response.ok);
+            } catch (error) {
+                showResponse('updateResponse', { error: error.message }, false);
+            }
+        });
+
+        // Reset Password
+        document.getElementById('resetPasswordForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const companyId = getCompanyId();
+            const techId = document.getElementById('resetTechId').value;
+            const data = {
+                newPassword: document.getElementById('newPassword').value,
+                confirmPassword: document.getElementById('confirmNewPassword').value
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/Company/${companyId}/CompanyTechnician/${techId}/reset-password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                showResponse('resetResponse', result, response.ok);
+                if (response.ok) {
+                    e.target.reset();
+                }
+            } catch (error) {
+                showResponse('resetResponse', { error: error.message }, false);
+            }
+        });
+
+        // Delete Technician
+        async function deleteTechnician() {
+            const companyId = getCompanyId();
+            const techId = document.getElementById('deleteTechId').value;
+            
+            if (!confirm('Are you sure you want to deactivate this technician?')) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/Company/${companyId}/CompanyTechnician/${techId}/delete`, {
+                    method: 'DELETE'
+                });
+                const result = await response.json();
+                showResponse('deleteResponse', result, response.ok);
+            } catch (error) {
+                showResponse('deleteResponse', { error: error.message }, false);
+            }
+        }
+    </script>
+</body>
+</html>

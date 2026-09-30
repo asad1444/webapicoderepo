@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Operating Room - Test & Debug</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .response {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            display: none;
+        }
+
+        .response.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .response.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .response.error {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #68d391;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 15px;
+            font-size: 13px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .job-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .job-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .job-card p {
+            margin: 5px 0;
+            opacity: 0.95;
+        }
+
+        .timer {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .timer.expired {
+            background: rgba(220, 53, 69, 0.8);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .debug-info {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .debug-info h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .debug-info p {
+            color: #856404;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚨 Live Operating Room - Test & Debug</h1>
+
+        <!-- Configuration -->
+        <div class="section">
+            <h2>⚙️ Configuration</h2>
+            <div class="form-group">
+                <label>API Base URL:</label>
+                <input type="text" id="apiBase" value="https://localhost:7296/api" placeholder="https://localhost:7296/api">
+            </div>
+            <div class="form-group">
+                <label>Company ID:</label>
+                <input type="number" id="companyId" value="1" placeholder="Enter Company ID">
+            </div>
+        </div>
+
+        <!-- Debug: Check Database -->
+        <div class="section">
+            <h2>🔍 Step 1: Debug Database</h2>
+            <button onclick="checkDatabase()">🔍 Check Database Status</button>
+            <div class="response" id="debugResponse"></div>
+        </div>
+
+        <!-- Create Test Job -->
+        <div class="section">
+            <h2>➕ Step 2: Create Test Job (Optional)</h2>
+            <div class="grid">
+                <div class="form-group">
+                    <label>Client ID:</label>
+                    <input type="number" id="clientId" value="1">
+                </div>
+                <div class="form-group">
+                    <label>Category:</label>
+                    <input type="text" id="category" value="AC Repair">
+                </div>
+                <div class="form-group">
+                    <label>Client Request:</label>
+                    <input type="text" id="clientRequest" value="Split AC 1.5 Ton">
+                </div>
+                <div class="form-group">
+                    <label>Issue Description:</label>
+                    <input type="text" id="issueDescription" value="Cooling problem">
+                </div>
+            </div>
+            <button onclick="createTestJob()">➕ Create Test Job</button>
+            <div class="response" id="createJobResponse"></div>
+        </div>
+
+        <!-- Get Live Requests -->
+        <div class="section">
+            <h2>🚨 Step 3: Get Live Operating Room Data</h2>
+            <button onclick="getLiveRequests()">🔄 Load Live Requests</button>
+            <div class="response" id="liveResponse"></div>
+        </div>
+
+        <!-- Submit Bid -->
+        <div class="section">
+            <h2>💰 Step 4: Submit Bid</h2>
+            <div class="grid">
+                <div class="form-group">
+                    <label>Job ID:</label>
+                    <input type="number" id="bidJobId" placeholder="Enter Job ID">
+                </div>
+                <div class="form-group">
+                    <label>ETA (minutes):</label>
+                    <input type="number" id="eta" value="30" placeholder="30, 45, 60">
+                </div>
+            </div>
+            <button onclick="submitBid()">💰 Submit Bid</button>
+            <div class="response" id="bidResponse"></div>
+        </div>
+
+        <!-- Get Won Jobs -->
+        <div class="section">
+            <h2>🏆 Step 5: Check Won Jobs</h2>
+            <button onclick="getWonJobs()">🏆 Load Won Jobs</button>
+            <div class="response" id="wonJobsResponse"></div>
+        </div>
+    </div>
+
+    <script>
+        function getApiBase() {
+            return document.getElementById('apiBase').value;
+        }
+
+        function getCompanyId() {
+            return document.getElementById('companyId').value;
+        }
+
+        function showResponse(elementId, data, isSuccess = true) {
+            const element = document.getElementById(elementId);
+            element.className = `response show ${isSuccess ? 'success' : 'error'}`;
+            element.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+
+        // Debug: Check Database
+        async function checkDatabase() {
+            const apiBase = getApiBase();
+            const companyId = getCompanyId();
+
+            let debugInfo = {
+                timestamp: new Date().toISOString(),
+                checks: {}
+            };
+
+            try {
+                // Check 1: Companies
+                console.log('Checking companies...');
+                const companiesRes = await fetch(`${apiBase}/Companies`);
+                const companies = await companiesRes.json();
+                debugInfo.checks.companies = {
+                    total: Array.isArray(companies) ? companies.length : 0,
+                    data: companies
+                };
+
+                // Check 2: Specific Company
+                console.log('Checking specific company...');
+                const companyRes = await fetch(`${apiBase}/Companies/${companyId}`);
+                if (companyRes.ok) {
+                    debugInfo.checks.targetCompany = await companyRes.json();
+                } else {
+                    debugInfo.checks.targetCompany = { error: 'Company not found' };
+                }
+
+                // Check 3: All Jobs
+                console.log('Checking jobs...');
+                const jobsRes = await fetch(`${apiBase}/Dispatch/tickets`);
+                const jobs = await jobsRes.json();
+                debugInfo.checks.jobs = {
+                    total: Array.isArray(jobs) ? jobs.length : 0,
+                    openJobs: Array.isArray(jobs) ? jobs.filter(j => j.statusFlag === 'Open' || j.status === 'Open').length : 0,
+                    data: jobs
+                };
+
+                // Check 4: Clients
+                console.log('Checking clients...');
+                const clientsRes = await fetch(`${apiBase}/Clients`);
+                const clients = await clientsRes.json();
+                debugInfo.checks.clients = {
+                    total: Array.isArray(clients) ? clients.length : 0,
+                    sample: Array.isArray(clients) ? clients.slice(0, 3) : []
+                };
+
+                showResponse('debugResponse', debugInfo, true);
+
+            } catch (error) {
+                debugInfo.error = error.message;
+                showResponse('debugResponse', debugInfo, false);
+            }
+        }
+
+        // Create Test Job
+        async function createTestJob() {
+            const apiBase = getApiBase();
+            const data = {
+                clientID: parseInt(document.getElementById('clientId').value),
+                category: document.getElementById('category').value,
+                clientRequest: document.getElementById('clientRequest').value,
+                issueDescription: document.getElementById('issueDescription').value,
+                crid: `CR-${Date.now()}`
+            };
+
+            try {
+                const response = await fetch(`${apiBase}/Dispatch/tickets`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                showResponse('createJobResponse', result, response.ok);
+            } catch (error) {
+                showResponse('createJobResponse', { error: error.message }, false);
+            }
+        }
+
+        // Get Live Requests
+        async function getLiveRequests() {
+            const apiBase = getApiBase();
+            const companyId = getCompanyId();
+
+            try {
+                const response = await fetch(
+                    `${apiBase}/Company/${companyId}/LiveOperatingRoom/requests`
+                );
+                
+                const result = await response.json();
+                
+                if (response.ok && result.jobs) {
+                    // Render job cards
+                    const jobsHtml = result.jobs.map(job => `
+                        <div class="job-card">
+                            <h3>${job.crNumber} - ${job.category}</h3>
+                            <p><strong>Job ID:</strong> ${job.jobID}</p>
+                            <p><strong>Client:</strong> ${job.clientName || 'N/A'}</p>
+                            <p><strong>Phone:</strong> ${job.clientPhone || 'N/A'}</p>
+                            <p><strong>Location:</strong> ${job.clientArea || 'N/A'}, ${job.clientZone || 'N/A'}</p>
+                            <p><strong>Issue:</strong> ${job.issueDescription || 'N/A'}</p>
+                            <p><strong>Zone Level:</strong> ${job.zoneLevelLabel || 'N/A'}</p>
+                            <div class="timer ${job.bidWindowExpired ? 'expired' : ''}">
+                                ${job.bidWindowExpired 
+                                    ? '❌ Bidding Closed' 
+                                    : `⏱️ ${Math.floor(job.minutesRemaining)}:${Math.floor((job.minutesRemaining % 1) * 60).toString().padStart(2, '0')} remaining`
+                                }
+                            </div>
+                        </div>
+                    `).join('');
+
+                    const html = `
+                        <div class="debug-info">
+                            <h4>📊 Summary</h4>
+                            <p><strong>Company Zone:</strong> ${result.companyZone}</p>
+                            <p><strong>Company City:</strong> ${result.companyCity}</p>
+                            <p><strong>Total Visible Jobs:</strong> ${result.totalVisible}</p>
+                        </div>
+                        <h3>Available Jobs:</h3>
+                        ${result.totalVisible > 0 ? jobsHtml : '<p>No jobs available in your zone.</p>'}
+                        <h3>Raw JSON:</h3>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                    
+                    document.getElementById('liveResponse').innerHTML = html;
+                    document.getElementById('liveResponse').className = 'response show success';
+                } else {
+                    showResponse('liveResponse', result, false);
+                }
+            } catch (error) {
+                showResponse('liveResponse', { error: error.message }, false);
+            }
+        }
+
+        // Submit Bid
+        async function submitBid() {
+            const apiBase = getApiBase();
+            const companyId = getCompanyId();
+            const jobId = document.getElementById('bidJobId').value;
+            const eta = document.getElementById('eta').value;
+
+            try {
+                const response = await fetch(
+                    `${apiBase}/Company/${companyId}/LiveOperatingRoom/bid/${jobId}`,
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(parseInt(eta))
+                    }
+                );
+                
+                const result = await response.json();
+                showResponse('bidResponse', result, response.ok);
+            } catch (error) {
+                showResponse('bidResponse', { error: error.message }, false);
+            }
+        }
+
+        // Get Won Jobs
+        async function getWonJobs() {
+            const apiBase = getApiBase();
+            const companyId = getCompanyId();
+
+            try {
+                const response = await fetch(
+                    `${apiBase}/Company/${companyId}/LiveOperatingRoom/won-jobs`
+                );
+                
+                const result = await response.json();
+                showResponse('wonJobsResponse', result, response.ok);
+            } catch (error) {
+                showResponse('wonJobsResponse', { error: error.message }, false);
+            }
+        }
+
+        // Auto-refresh every 30 seconds (optional)
+        let autoRefresh = false;
+        function toggleAutoRefresh() {
+            autoRefresh = !autoRefresh;
+            if (autoRefresh) {
+                setInterval(() => {
+                    if (autoRefresh) getLiveRequests();
+                }, 30000);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Authentication Testing - SmartProMan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .api-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .api-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .api-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .response {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .response.success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+        
+        .response.error {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+        
+        .token-display {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            word-wrap: break-word;
+            font-size: 12px;
+        }
+        
+        .note {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .step-indicator {
+            background: #f0f0f0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏢 Company Authentication API Testing</h1>
+        
+        <div class="api-sections">
+            <!-- REGISTER -->
+            <div class="api-section">
+                <h2>📝 Register Company</h2>
+                <div class="note">
+                    <strong>Note:</strong> After registration, status will be "Pending" until admin approves.
+                </div>
+                
+                <div class="form-group">
+                    <label>Company Name *</label>
+                    <input type="text" id="regCompanyName" placeholder="ABC Services Ltd." value="Test Company Services">
+                </div>
+                
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="regEmail" placeholder="company@example.com" value="testcompany@gmail.com">
+                </div>
+                
+                <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" id="regPassword" placeholder="Min 6 characters" value="password123">
+                </div>
+                
+                <div class="form-group">
+                    <label>Incharge Name *</label>
+                    <input type="text" id="regInchargeName" placeholder="John Doe" value="Ahmed Khan">
+                </div>
+                
+                <div class="form-group">
+                    <label>Incharge Phone *</label>
+                    <input type="text" id="regPhone" placeholder="03001234567" value="03001234567">
+                </div>
+                
+                <div class="form-group">
+                    <label>City *</label>
+                    <input type="text" id="regCity" placeholder="Karachi" value="Karachi">
+                </div>
+                
+                <div class="form-group">
+                    <label>Zone *</label>
+                    <input type="text" id="regZone" placeholder="North" value="North Karachi">
+                </div>
+                
+                <div class="form-group">
+                    <label>Service Type *</label>
+                    <input type="text" id="regServiceType" placeholder="HVAC, Electrical" value="HVAC & AC Services">
+                </div>
+                
+                <button onclick="registerCompany()">Register Company</button>
+                <div id="registerResponse"></div>
+            </div>
+
+            <!-- LOGIN -->
+            <div class="api-section">
+                <h2>🔐 Company Login</h2>
+                <div class="note">
+                    <strong>Login with:</strong> Email OR Phone + Password
+                </div>
+                
+                <div class="form-group">
+                    <label>Email or Phone *</label>
+                    <input type="text" id="loginIdentifier" placeholder="email@example.com or 03001234567" value="testcompany@gmail.com">
+                </div>
+                
+                <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" id="loginPassword" placeholder="Password" value="password123">
+                </div>
+                
+                <button onclick="loginCompany()">Login</button>
+                <div id="loginResponse"></div>
+            </div>
+
+            <!-- CHANGE PASSWORD -->
+            <div class="api-section">
+                <h2>🔒 Change Password</h2>
+                <div class="note">
+                    <strong>Required:</strong> You must be logged in (Token required)
+                </div>
+                
+                <div class="form-group">
+                    <label>Current Password *</label>
+                    <input type="password" id="currentPassword" placeholder="Current password">
+                </div>
+                
+                <div class="form-group">
+                    <label>New Password *</label>
+                    <input type="password" id="newPassword" placeholder="Min 6 characters">
+                </div>
+                
+                <div class="form-group">
+                    <label>Confirm New Password *</label>
+                    <input type="password" id="confirmPassword" placeholder="Re-enter new password">
+                </div>
+                
+                <button onclick="changePassword()">Change Password</button>
+                <div id="changePasswordResponse"></div>
+            </div>
+
+            <!-- FORGOT PASSWORD - STEP 1 -->
+            <div class="api-section">
+                <h2>📧 Forgot Password (Step 1)</h2>
+                <div class="step-indicator">Step 1/3: Request OTP</div>
+                
+                <div class="form-group">
+                    <label>Email or Phone *</label>
+                    <input type="text" id="forgotIdentifier" placeholder="email@example.com or 03001234567">
+                </div>
+                
+                <button onclick="forgotPassword()">Send OTP</button>
+                <div id="forgotResponse"></div>
+            </div>
+
+            <!-- VERIFY OTP - STEP 2 -->
+            <div class="api-section">
+                <h2>✅ Verify OTP (Step 2)</h2>
+                <div class="step-indicator">Step 2/3: Verify OTP</div>
+                
+                <div class="form-group">
+                    <label>Email or Phone *</label>
+                    <input type="text" id="verifyIdentifier" placeholder="Same as Step 1">
+                </div>
+                
+                <div class="form-group">
+                    <label>OTP Code *</label>
+                    <input type="text" id="otpCode" placeholder="6-digit OTP">
+                </div>
+                
+                <button onclick="verifyOtp()">Verify OTP</button>
+                <div id="verifyOtpResponse"></div>
+            </div>
+
+            <!-- RESET PASSWORD - STEP 3 -->
+            <div class="api-section">
+                <h2>🔓 Reset Password (Step 3)</h2>
+                <div class="step-indicator">Step 3/3: Set New Password</div>
+                
+                <div class="form-group">
+                    <label>Email or Phone *</label>
+                    <input type="text" id="resetIdentifier" placeholder="Same as previous steps">
+                </div>
+                
+                <div class="form-group">
+                    <label>OTP Code *</label>
+                    <input type="text" id="resetOtp" placeholder="Verified OTP">
+                </div>
+                
+                <div class="form-group">
+                    <label>New Password *</label>
+                    <input type="password" id="resetNewPassword" placeholder="Min 6 characters">
+                </div>
+                
+                <div class="form-group">
+                    <label>Confirm Password *</label>
+                    <input type="password" id="resetConfirmPassword" placeholder="Re-enter password">
+                </div>
+                
+                <button onclick="resetPassword()">Reset Password</button>
+                <div id="resetResponse"></div>
+            </div>
+
+            <!-- GET PROFILE -->
+            <div class="api-section">
+                <h2>👤 Get Profile</h2>
+                <div class="note">
+                    <strong>Required:</strong> You must be logged in (Token required)
+                </div>
+                
+                <button onclick="getProfile()">Get My Profile</button>
+                <div id="profileResponse"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://localhost:5186/api/company/auth';
+        let authToken = localStorage.getItem('companyToken') || '';
+
+        // Save token when login successful
+        function saveToken(token) {
+            authToken = token;
+            localStorage.setItem('companyToken', token);
+            console.log('Token saved:', token);
+        }
+
+        // Display response
+        function displayResponse(elementId, data, isError = false) {
+            const element = document.getElementById(elementId);
+            element.className = `response ${isError ? 'error' : 'success'}`;
+            element.textContent = JSON.stringify(data, null, 2);
+            
+            // If token in response, save it
+            if (data.Token) {
+                saveToken(data.Token);
+                element.innerHTML += `<div class="token-display"><strong>✓ Token Saved!</strong><br>You can now use Change Password & Get Profile</div>`;
+            }
+        }
+
+        // Register Company
+        async function registerCompany() {
+            const data = {
+                CompanyName: document.getElementById('regCompanyName').value,
+                Email: document.getElementById('regEmail').value,
+                Password: document.getElementById('regPassword').value,
+                InchargeName: document.getElementById('regInchargeName').value,
+                InchargePhone: document.getElementById('regPhone').value,
+                City: document.getElementById('regCity').value,
+                Zone: document.getElementById('regZone').value,
+                ServiceType: document.getElementById('regServiceType').value
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                displayResponse('registerResponse', result, !response.ok);
+            } catch (error) {
+                displayResponse('registerResponse', { error: error.message }, true);
+            }
+        }
+
+        // Login Company
+        async function loginCompany() {
+            const data = {
+                Identifier: document.getElementById('loginIdentifier').value,
+                Password: document.getElementById('loginPassword').value
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                displayResponse('loginResponse', result, !response.ok);
+            } catch (error) {
+                displayResponse('loginResponse', { error: error.message }, true);
+            }
+        }
+
+        // Change Password
+        async function changePassword() {
+            if (!authToken) {
+                displayResponse('changePasswordResponse', { error: 'Please login first!' }, true);
+                return;
+            }
+
+            const data = {
+                CurrentPassword: document.getElementById('currentPassword').value,
+                NewPassword: document.getElementById('newPassword').value,
+                ConfirmPassword: document.getElementById('confirmPassword').value
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/change-password`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                displayResponse('changePasswordResponse', result, !response.ok);
+            } catch (error) {
+                displayResponse('changePasswordResponse', { error: error.message }, true);
+            }
+        }
+
+        // Forgot Password
+        async function forgotPassword() {
+            const data = {
+                Identifier: document.getElementById('forgotIdentifier').value
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/forgot-password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                displayResponse('forgotResponse', result, !response.ok);
+                
+                // Auto-fill next step
+                if (result.DebugOTP) {
+                    document.getElementById('verifyIdentifier').value = data.Identifier;
+                    document.getElementById('otpCode').value = result.DebugOTP;
+                    document.getElementById('resetIdentifier').value = data.Identifier;
+                    document.getElementById('resetOtp').value = result.DebugOTP;
+                }
+            } catch (error) {
+                displayResponse('forgotResponse', { error: error.message }, true);
+            }
+        }
+
+        // Verify OTP
+        async function verifyOtp() {
+            const data = {
+                Identifier: document.getElementById('verifyIdentifier').value,
+                Otp: document.getElementById('otpCode').value
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/verify-otp`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                displayResponse('verifyOtpResponse', result, !response.ok);
+            } catch (error) {
+                displayResponse('verifyOtpResponse', { error: error.message }, true);
+            }
+        }
+
+        // Reset Password
+        async function resetPassword() {
+            const data = {
+                Identifier: document.getElementById('resetIdentifier').value,
+                Otp: document.getElementById('resetOtp').value,
+                NewPassword: document.getElementById('resetNewPassword').value,
+                ConfirmPassword: document.getElementById('resetConfirmPassword').value
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/reset-password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                displayResponse('resetResponse', result, !response.ok);
+            } catch (error) {
+                displayResponse('resetResponse', { error: error.message }, true);
+            }
+        }
+
+        // Get Profile
+        async function getProfile() {
+            if (!authToken) {
+                displayResponse('profileResponse', { error: 'Please login first!' }, true);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${BASE_URL}/profile`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                const result = await response.json();
+                displayResponse('profileResponse', result, !response.ok);
+            } catch (error) {
+                displayResponse('profileResponse', { error: error.message }, true);
+            }
+        }
+
+        // Show saved token on page load
+        window.onload = function() {
+            if (authToken) {
+                console.log('Saved token found:', authToken);
+            }
+        };
+    </script>
+</body>
+</html>
