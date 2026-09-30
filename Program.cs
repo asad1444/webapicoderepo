@@ -54,11 +54,11 @@ builder.Services.AddSwaggerGen(c =>
 var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 if (string.IsNullOrWhiteSpace(defaultConnection))
 {
-    defaultConnection = "Server=DESKTOP-LOABS9T;Database=SmartProManWebAPIS;Trusted_Connection=True;TrustServerCertificate=True;";
+    defaultConnection = "Data Source=smartproman.db";
 }
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(defaultConnection));
+    options.UseSqlite(defaultConnection));
 
 // ─── JWT Authentication ──────────────────────────────────────────────────────
 var jwtKey = builder.Configuration["Jwt:Key"]!;
