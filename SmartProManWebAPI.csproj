@@ -13,6 +13,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <!-- SQL Server ki jagah SQLite ka package add kar diya hai -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.*">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
