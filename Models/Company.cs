@@ -13,7 +13,6 @@ namespace SmartProManWebAPI.Models
         [MaxLength(200)]
         public string CompanyName { get; set; }
 
-        [Column(TypeName = "nvarchar(max)")]
         public string? CompanyLogo { get; set; }
 
         [Required]
