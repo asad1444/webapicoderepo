@@ -54,7 +54,8 @@ builder.Services.AddSwaggerGen(c =>
 var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 if (string.IsNullOrWhiteSpace(defaultConnection))
 {
-    defaultConnection = "Data Source=smartproman.db";
+    // Agar appsettings mein na mile, to Render ya local ke liye SQLite fallback use ho
+    defaultConnection = "Data Source=SmartProMan.db";
 }
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -129,12 +130,12 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        db.Database.Migrate();
+        db.Database.EnsureCreated();
         app.Logger.LogInformation("Database migration completed successfully.");
     }
     catch (Exception ex)
     {
-        app.Logger.LogWarning(ex, "SQL Server is not available at startup. The API will continue without auto-migration. Start SQL Server or update the connection string.");
+        app.Logger.LogWarning(ex, "Database is not available at startup. The API will continue without auto-migration.");
     }
 }
 

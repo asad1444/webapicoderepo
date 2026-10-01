@@ -58,25 +58,63 @@ namespace SmartProManWebAPI.Controllers
                 query = query.Where(c => c.ServiceType == serviceType);
             }
 
-            var companies = await query.Select(c => new
+            // SQLite decimal Sum fix: pehle companies fetch karo, phir client side par calculate karo
+            var companiesList = await query.ToListAsync();
+
+            var companyIds = companiesList.Select(c => c.CompanyID).ToList();
+
+            // Sab data ek baar mein fetch karo (N+1 se bachne ke liye)
+            var techCounts = await _context.Technicians
+                .Where(t => companyIds.Contains(t.CompanyID))
+                .GroupBy(t => t.CompanyID)
+                .Select(g => new { CompanyID = g.Key, Count = g.Count() })
+                .ToListAsync();
+
+            var jobCounts = await _context.Jobs
+                .Where(j => j.CompanyID.HasValue && companyIds.Contains(j.CompanyID.Value) && j.Status == "Completed")
+                .GroupBy(j => j.CompanyID!.Value)
+                .Select(g => new { CompanyID = g.Key, Count = g.Count() })
+                .ToListAsync();
+
+            // Completed job IDs per company
+            var completedJobIds = await _context.Jobs
+                .Where(j => j.CompanyID.HasValue && companyIds.Contains(j.CompanyID.Value) && j.Status == "Completed")
+                .Select(j => new { j.JobID, CompanyID = j.CompanyID!.Value })
+                .ToListAsync();
+
+            // Invoices jo in jobs se related hain - GrandTotal ko double mein laao (SQLite fix)
+            var jobIdList = completedJobIds.Select(j => j.JobID).ToList();
+            var invoices = await _context.Set<Invoice>()
+                .Where(i => jobIdList.Contains(i.JobID))
+                .Select(i => new { i.JobID, GrandTotal = (double)i.GrandTotal })
+                .ToListAsync();
+
+            var companies = companiesList.Select(c =>
             {
-                c.CompanyID,
-                c.CompanyLogo,
-                c.CompanyName,
-                c.ServiceType,
-                c.InchargeName,
-                c.InchargePhone,
-                c.City,
-                c.Zone,
-                TechniciansCount = _context.Technicians.Count(t => t.CompanyID == c.CompanyID),
-                JobsCompleted = _context.Jobs.Count(j => j.CompanyID == c.CompanyID && j.Status == "Completed"),
-                Revenue = _context.Set<Invoice>()
-                    .Where(i => _context.Jobs.Any(j => j.JobID == i.JobID && j.CompanyID == c.CompanyID && j.Status == "Completed"))
-                    .Sum(i => (decimal?)i.GrandTotal) ?? 0,
-                c.Status
-            }).ToListAsync();
+                var techCount = techCounts.FirstOrDefault(t => t.CompanyID == c.CompanyID)?.Count ?? 0;
+                var jobCount = jobCounts.FirstOrDefault(j => j.CompanyID == c.CompanyID)?.Count ?? 0;
+                var compJobIds = completedJobIds.Where(j => j.CompanyID == c.CompanyID).Select(j => j.JobID).ToHashSet();
+                var revenue = (decimal)invoices.Where(i => compJobIds.Contains(i.JobID)).Sum(i => i.GrandTotal);
+
+                return new
+                {
+                    c.CompanyID,
+                    c.CompanyLogo,
+                    c.CompanyName,
+                    c.ServiceType,
+                    c.InchargeName,
+                    c.InchargePhone,
+                    c.City,
+                    c.Zone,
+                    TechniciansCount = techCount,
+                    JobsCompleted = jobCount,
+                    Revenue = revenue,
+                    c.Status
+                };
+            }).ToList();
 
             return Ok(companies);
+
         }
 
         // GET: api/Companies/5
