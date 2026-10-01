@@ -31,12 +31,14 @@ namespace SmartProManWebAPI.Controllers
                 .Where(j => j.TechnicianID == technicianId && j.CreatedAt.HasValue && j.CreatedAt.Value.Date == today)
                 .ToListAsync();
 
-            var todaysCollection = await _context.Payments
+            var todaysCollectionRaw = await _context.Payments
                 .Where(p =>
                     p.IsSuccessful &&
                     p.PaymentDate.Date == today &&
                     p.Invoice.Job.TechnicianID == technicianId)
-                .SumAsync(p => (decimal?)p.AmountReceived) ?? 0;
+                .Select(p => (double)p.AmountReceived)
+                .ToListAsync();
+            var todaysCollection = (decimal)todaysCollectionRaw.Sum();
 
             var autoData = new
             {

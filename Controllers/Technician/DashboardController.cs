@@ -49,13 +49,15 @@ namespace SmartProManWebAPI.Controllers.Technician
             var inProgressJobs = jobs.Count(j => j.Status == "In Progress" || j.Status == "On Route" || j.Status == "Arrived");
             var repeatJobs     = jobs.Count(j => j.Category == "Repeat Call");
 
-            // Today's collection — real sum from Payments
-            var todaysCollection = await _context.Payments
+            // Today's collection — SQLite fix: fetch to memory then sum
+            var todaysCollectionRaw = await _context.Payments
                 .Where(p =>
                     p.IsSuccessful &&
                     p.PaymentDate.Date == today &&
                     p.Invoice.Job.TechnicianID == technicianId)
-                .SumAsync(p => (decimal?)p.AmountReceived) ?? 0;
+                .Select(p => (double)p.AmountReceived)
+                .ToListAsync();
+            var todaysCollection = (decimal)todaysCollectionRaw.Sum();
 
             var recentNotifications = await _context.Notifications
                 .Where(n => n.TechnicianId == technicianId && !n.IsRead && n.Type != "stuck" && n.Type != "delay")

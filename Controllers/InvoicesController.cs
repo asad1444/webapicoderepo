@@ -84,7 +84,8 @@ namespace SmartProManWebAPI.Controllers
                 })
                 .ToListAsync();
 
-            decimal totalPaid = payments.Where(p => p.IsSuccessful).Sum(p => p.AmountReceived);
+            var successfulPayments = payments.Where(p => p.IsSuccessful).ToList();
+            decimal totalPaid = (decimal)successfulPayments.Sum(p => (double)p.AmountReceived);
             decimal balance = invoice.GrandTotal - totalPaid;
 
             return Ok(new
@@ -135,13 +136,23 @@ namespace SmartProManWebAPI.Controllers
             var currentMonth = DateTime.Now.Month;
             var currentYear = DateTime.Now.Year;
 
-            var totalRevenue = await _context.Invoices.SumAsync(i => i.GrandTotal);
-            var monthlyRevenue = await _context.Invoices
+            // SQLite fix: fetch to memory then sum as double
+            var allInvoices = await _context.Invoices.Select(i => (double)i.GrandTotal).ToListAsync();
+            var totalRevenue = (decimal)allInvoices.Sum();
+
+            var monthlyInvoices = await _context.Invoices
                 .Where(i => i.InvoiceDate.Month == currentMonth && i.InvoiceDate.Year == currentYear)
-                .SumAsync(i => i.GrandTotal);
+                .Select(i => (double)i.GrandTotal)
+                .ToListAsync();
+            var monthlyRevenue = (decimal)monthlyInvoices.Sum();
 
             var totalInvoices = await _context.Invoices.CountAsync();
-            var totalPayments = await _context.Payments.Where(p => p.IsSuccessful).SumAsync(p => p.AmountReceived);
+
+            var paymentsRaw = await _context.Payments
+                .Where(p => p.IsSuccessful)
+                .Select(p => (double)p.AmountReceived)
+                .ToListAsync();
+            var totalPayments = (decimal)paymentsRaw.Sum();
 
             return Ok(new
             {

@@ -91,9 +91,12 @@ namespace SmartProManWebAPI.Controllers
             if (invoice == null) return NotFound("Invoice not found.");
 
             // Check amount does not exceed balance
-            var alreadyPaid = await _context.Payments
+            // SQLite fix: fetch to memory then sum
+            var alreadyPaidRaw = await _context.Payments
                 .Where(p => p.InvoiceId == dto.InvoiceId && p.IsSuccessful)
-                .SumAsync(p => p.AmountReceived);
+                .Select(p => (double)p.AmountReceived)
+                .ToListAsync();
+            var alreadyPaid = (decimal)alreadyPaidRaw.Sum();
 
             var balance = invoice.GrandTotal - alreadyPaid;
 

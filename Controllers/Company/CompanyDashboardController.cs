@@ -41,10 +41,13 @@ namespace SmartProManWebAPI.Controllers.Company
             var currentMonth = DateTime.Now.Month;
             var currentYear = DateTime.Now.Year;
 
-            var monthlyRevenue = await _context.ProformaInvoices
+            // SQLite fix: fetch to memory then sum as double
+            var monthlyRevenueRaw = await _context.ProformaInvoices
                 .Include(p => p.MasterCard)
                 .Where(p => p.MasterCard.CompanyID == companyId && p.CreatedAt.HasValue && p.CreatedAt.Value.Month == currentMonth && p.CreatedAt.Value.Year == currentYear)
-                .SumAsync(p => p.GrandTotal ?? 0);
+                .Select(p => (double)(p.GrandTotal ?? 0))
+                .ToListAsync();
+            var monthlyRevenue = (decimal)monthlyRevenueRaw.Sum();
 
             return Ok(new
             {
