@@ -201,17 +201,86 @@ namespace SmartProManWebAPI.Controllers
             // Send email if activated
             if (company.Status == "Active" && wasNotActive && !string.IsNullOrEmpty(company.Email))
             {
-                string subject = "Smart Proman - Company Activated";
+                string subject = "🎉 SmartProMan – Your Account Has Been Approved!";
                 string body = $@"
-                    <html>
-                    <body>
-                        <h2>Welcome to Smart Proman!</h2>
-                        <p>Dear {company.CompanyName},</p>
-                        <p>Your account is approved successfully. Now You can Login.</p>
-                        <br/>
-                        <p>Regards,<br/>Smart Proman Team</p>
-                    </body>
-                    </html>";
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+</head>
+<body style='margin:0;padding:0;background-color:#f4f6f9;font-family:Arial,sans-serif;'>
+  <table width='100%' cellpadding='0' cellspacing='0' style='background-color:#f4f6f9;padding:30px 0;'>
+    <tr>
+      <td align='center'>
+        <table width='600' cellpadding='0' cellspacing='0' style='background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);'>
+          
+          <!-- Header -->
+          <tr>
+            <td style='background:linear-gradient(135deg,#0D3320,#1E6B3A);padding:36px 40px;text-align:center;'>
+              <h1 style='color:#ffffff;margin:0;font-size:26px;font-weight:700;letter-spacing:1px;'>SmartProMan</h1>
+              <p style='color:rgba(255,255,255,0.75);margin:6px 0 0;font-size:13px;'>Operations Management Platform</p>
+            </td>
+          </tr>
+
+          <!-- Success Badge -->
+          <tr>
+            <td style='text-align:center;padding:30px 40px 10px;'>
+              <div style='display:inline-block;background-color:#e8f5e9;border-radius:50%;width:70px;height:70px;line-height:70px;font-size:36px;'>✅</div>
+              <h2 style='color:#1E6B3A;font-size:22px;margin:16px 0 6px;'>Account Approved!</h2>
+              <p style='color:#666666;font-size:14px;margin:0;'>Your company has been reviewed and activated by the SmartProMan admin team.</p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style='padding:20px 40px 30px;'>
+              <p style='color:#333333;font-size:15px;margin:0 0 16px;'>Dear <strong>{company.CompanyName}</strong>,</p>
+              <p style='color:#555555;font-size:14px;line-height:1.7;margin:0 0 20px;'>
+                We are pleased to inform you that your SmartProMan company account is now <strong style='color:#1E6B3A;'>Active</strong>. 
+                You can now log in and start managing your field operations, dispatch technicians, and track jobs in real-time.
+              </p>
+
+              <!-- Info Box -->
+              <table width='100%' cellpadding='0' cellspacing='0' style='background-color:#f0faf3;border-left:4px solid #1E6B3A;border-radius:6px;margin-bottom:24px;'>
+                <tr>
+                  <td style='padding:16px 18px;'>
+                    <p style='margin:0 0 6px;font-size:13px;color:#555;'><strong>📧 Registered Email:</strong> {company.Email}</p>
+                    <p style='margin:0;font-size:13px;color:#555;'><strong>🏢 Company Name:</strong> {company.CompanyName}</p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- CTA Button -->
+              <table width='100%' cellpadding='0' cellspacing='0'>
+                <tr>
+                  <td align='center'>
+                    <a href='https://smartproman.com/login' 
+                       style='display:inline-block;background:linear-gradient(135deg,#0D3320,#1E6B3A);color:#ffffff;text-decoration:none;padding:14px 40px;border-radius:8px;font-size:15px;font-weight:700;letter-spacing:0.5px;'>
+                      Login to SmartProMan →
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style='background-color:#f8faf8;padding:20px 40px;text-align:center;border-top:1px solid #e8f0e8;'>
+              <p style='color:#999999;font-size:12px;margin:0;'>
+                This is an automated message from SmartProMan. Please do not reply to this email.<br/>
+                © 2026 SmartProMan. All rights reserved.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>";
                 await _emailService.SendAsync(company.Email, subject, body);
             }
 

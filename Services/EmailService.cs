@@ -62,7 +62,8 @@ namespace SmartProManWebAPI.Services
                 };
                 mail.To.Add(toEmail);
 
-                await client.SendMailAsync(mail);
+                using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+                await client.SendMailAsync(mail, cts.Token);
                 _logger.LogInformation("Email sent to {Email}", toEmail);
                 return true;
             }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SmartProManWebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf06fa4724ea1602b1baba29c000afdeea629bff")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53bcf6415b2cd925b4c843246fad7d979556cb9e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SmartProManWebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SmartProManWebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
